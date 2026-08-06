@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio | Matheus Ortiz</title>
+    <link
+      rel="icon"
+      href="img/MBOsimbolo_preto_fundo_branco.png"
+      type="image/png"
+    />
+
+    <!-- Google Fonts & Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+    />
+
+    <!-- Seu CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- =========================================
+       1. CABEÇALHO E NAVEGAÇÃO
+    ========================================= -->
+    <header class="cabecalho">
+      <!-- Ícone do Menu Hambúrguer na Esquerda -->
+      <span class="material-symbols-outlined" id="icone-menu" title="Abrir menu"
+        >menu</span
+      >
+      <h1 class="logo">Portfólio</h1>
+
+      <!-- Botão de Alternar Tema -->
+      <div class="toggle-tema" id="btn-tema" title="Alternar tema">
+        <span class="material-symbols-outlined" id="icone-tema">toggle_on</span>
+      </div>
+    </header>
+
+    <!-- =========================================
+       2. MENU LATERAL (SIDEBAR)
+    ========================================= -->
+    <nav class="menu-lateral" id="menu-lateral">
+      <div class="menu-cabecalho">
+        <h2>Navegação</h2>
+        <span
+          class="material-symbols-outlined"
+          id="btn-fechar"
+          title="Fechar menu"
+          >close</span
+        >
+      </div>
+      <div class="menu-conteudo">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#contatos">Contatos</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- =========================================
+       3. SEÇÃO PRINCIPAL (APRESENTAÇÃO + SOBRE MIM)
+    ========================================= -->
+    <main>
+      <!-- Seção Apresentação / Hero -->
+      <section class="apresentacao" id="inicio">
+        <div class="apresentacao-conteudo">
+          <h1>
+            Olá, eu sou o <br /><strong class="destaque-roxo"
+              >Matheus Ortiz</strong
+            >
+          </h1>
+          <p class="subtitulo">Desenvolvedor Front-end</p>
+
+          <div class="tech-icons">
+            <i class="devicon-html5-plain"></i>
+            <i class="devicon-css3-plain"></i>
+            <i class="devicon-javascript-plain"></i>
+            <i class="devicon-react-original" title="React"></i>
+            <i class="devicon-typescript-plain" title="TypeScript"></i>
+          </div>
+
+          <div class="botoes">
+            <a
+              class="btn-primario"
+              href="https://www.linkedin.com/in/matheus-ortiz-72886083/"
+              target="_blank"
+              >LinkedIn</a
+            >
+            <a
+              class="btn-secundario"
+              href="https://www.instagram.com/mbortiz.info/"
+              target="_blank"
+              >Instagram</a
+            >
+          </div>
+        </div>
+
+        <div class="apresentacao-imagem">
+          <!-- Foto com link para o GitHub -->
+          <a
+            href="https://github.com/Mbortiz88"
+            target="_blank"
+            title="Acessar meu GitHub"
+          >
+            <img src="img/Foto de perfil.png" alt="Foto do Matheus Ortiz" />
+          </a>
+        </div>
+      </section>
+
+      <!-- Seção Sobre Mim -->
+      <section class="sobre-mim" id="sobre">
+        <h2>Sobre mim</h2>
+        <p>
+          Sou um estudante de tecnologia apaixonado por criar experiências
+          digitais e resolver problemas através do código. Atuo focado em
+          <span class="destaque-texto">Desenvolvimento Front-end</span>,
+          construindo interfaces modernas, interativas e responsivas utilizando
+          <span class="destaque-texto"
+            >HTML, CSS, JavaScript, React e TypeScript</span
+          >.
+        </p>
+      </section>
+    </main>
+
+    <!-- =========================================
+       4. SEÇÃO HABILIDADES
+    ========================================= -->
+    <section class="habilidades" id="habilidades">
+      <h2>Habilidades</h2>
+
+      <div class="habilidades-grid">
+        <div class="habilidade-card">
+          <span>HTML5</span>
+          <i class="devicon-html5-plain"></i>
+        </div>
+
+        <div class="habilidade-card">
+          <span>CSS3</span>
+          <i class="devicon-css3-plain"></i>
+        </div>
+
+        <div class="habilidade-card">
+          <span>JavaScript</span>
+          <i class="devicon-javascript-plain"></i>
+        </div>
+
+        <div class="habilidade-card">
+          <span>React.js</span>
+          <i class="devicon-react-original"></i>
+        </div>
+
+        <div class="habilidade-card">
+          <span>TypeScript</span>
+          <i class="devicon-typescript-plain"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+       5. SEÇÃO CONTATOS
+    ========================================= -->
+    <section class="contatos" id="contatos">
+      <h2>Contatos</h2>
+
+      <div class="contatos-lista">
+        <!-- E-mail -->
+        <div class="contato-item">
+          <div class="contato-icone">
+            <span class="material-symbols-outlined">mail</span>
+          </div>
+          <h3>E-mail</h3>
+          <p>matheus.ortiz@gmail.com</p>
+        </div>
+
+        <!-- Telefone -->
+        <a
+          href="https://wa.me/5547933810850"
+          target="_blank"
+          class="contato-item link-contato"
+        >
+          <div class="contato-icone">
+            <span class="material-symbols-outlined">call</span>
+          </div>
+          <h3>Telefone</h3>
+          <p>(47) 93381-0850</p>
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/matheus-ortiz-72886083/"
+          target="_blank"
+          class="contato-item link-contato"
+        >
+          <div class="contato-icone">
+            <span class="material-symbols-outlined">work</span>
+          </div>
+          <h3>LinkedIn</h3>
+          <p>Matheus Ortiz</p>
+        </a>
+
+        <!-- Github -->
+        <a
+          href="https://github.com/Mbortiz88"
+          target="_blank"
+          class="contato-item link-contato"
+        >
+          <div class="contato-icone">
+            <span class="material-symbols-outlined">code</span>
+          </div>
+          <h3>Github</h3>
+          <p>@Mbortiz88</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Seu JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
