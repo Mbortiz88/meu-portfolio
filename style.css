@@ -574,6 +574,7 @@ a.link-contato:hover h3 {
 .habilidade-card:nth-child(5) {
   transition-delay: 0.5s;
 }
+
 /* =========================================
    8. TEMA CLARO (LIGHT MODE COMPLETO)
 ========================================= */
@@ -639,10 +640,13 @@ body.light-mode .sobre-mim p {
   color: #52525b;
 }
 
+/* CORREÇÃO 3: Adicionado o título de Habilidades para ficar escuro no modo claro junto com os contatos */
+body.light-mode .habilidades h2,
 body.light-mode .contatos h2,
 body.light-mode .contato-item h3 {
   color: #121214;
 }
+
 body.light-mode .contato-item p {
   color: #52525b;
 }
