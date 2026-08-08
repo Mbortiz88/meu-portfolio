@@ -20,6 +20,12 @@
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
     />
 
+    <!-- ADICIONADO: Biblioteca do FontAwesome para os logotipos oficiais -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <!-- Seu CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -54,6 +60,7 @@
         >
       </div>
       <div class="menu-conteudo">
+        <h3 class="mensagem-bem-vindo">Bem-vindo ao meu Portfólio :)</h3>
         <ul>
           <li><a href="#inicio">Início</a></li>
           <li><a href="#sobre">Sobre</a></li>
@@ -71,11 +78,10 @@
       <section class="apresentacao" id="inicio">
         <div class="apresentacao-conteudo">
           <h1>
-            Olá, eu sou o <br /><strong class="destaque-roxo"
-              >Matheus Ortiz</strong
-            >
+            <span id="texto-ola">Olá, eu sou o</span> <br />
+            <strong class="destaque-roxo" id="texto-nome">Matheus Ortiz</strong>
           </h1>
-          <p class="subtitulo">Desenvolvedor Front-end</p>
+          <p class="subtitulo" id="texto-cargo">Desenvolvedor Front-end</p>
 
           <div class="tech-icons">
             <i class="devicon-html5-plain"></i>
@@ -90,14 +96,18 @@
               class="btn-primario"
               href="https://www.linkedin.com/in/matheus-ortiz-72886083/"
               target="_blank"
-              >LinkedIn</a
             >
+              <i class="fa-brands fa-linkedin"></i>
+              LinkedIn
+            </a>
             <a
               class="btn-secundario"
-              href="https://www.instagram.com/mbortiz.info/"
+              href="https://wa.me/5547933810850"
               target="_blank"
-              >Instagram</a
             >
+              <i class="fa-brands fa-whatsapp"></i>
+              WhatsApp
+            </a>
           </div>
         </div>
 
@@ -223,4 +233,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-
