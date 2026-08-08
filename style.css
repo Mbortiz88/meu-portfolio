@@ -324,7 +324,7 @@ main {
   max-width: 900px;
   width: 100%;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 100px; /* <--- Aumentamos de 20px para 100px para empurrar para baixo */
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
@@ -765,7 +765,6 @@ body.light-mode::before {
    12. RESPONSIVIDADE (MOBILE - TELAS ATÉ 768px)
 ========================================= */
 @media (max-width: 768px) {
-  
   /* Ajusta o padding do cabeçalho */
   .cabecalho {
     padding: 20px 20px;
@@ -789,7 +788,8 @@ body.light-mode::before {
     font-size: 32px;
   }
 
-  .tech-icons, .botoes {
+  .tech-icons,
+  .botoes {
     justify-content: center;
   }
 
@@ -803,7 +803,7 @@ body.light-mode::before {
     flex-wrap: wrap !important;
     gap: 15px;
   }
-  
+
   .habilidade-card {
     width: 120px;
     height: 120px;
@@ -814,7 +814,8 @@ body.light-mode::before {
     gap: 10px;
   }
 
-  .contato-item, a.link-contato {
+  .contato-item,
+  a.link-contato {
     width: 150px;
   }
 
@@ -822,13 +823,33 @@ body.light-mode::before {
   .menu-cabecalho {
     right: 20px;
   }
-  
+
   .menu-conteudo ul li a {
     font-size: 24px;
   }
-  
+
   .mensagem-bem-vindo {
     font-size: 20px;
     padding: 0 20px;
   }
+}
+
+/* =========================================
+   RODAPÉ (FOOTER)
+========================================= */
+.rodape {
+  text-align: center;
+  padding: 25px 20px;
+  margin-top: 60px; /* Dá um respiro depois dos contatos */
+  color: #a8a8b3;
+  font-size: 14px;
+  border-top: 1px solid rgba(229, 46, 46, 0.2); /* Linha sutil em vermelho escuro */
+  background-color: transparent;
+  width: 100%;
+}
+
+/* Ajuste para o Modo Claro */
+body.light-mode .rodape {
+  color: #52525b;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
