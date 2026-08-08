@@ -98,3 +98,56 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// =========================================
+//   EFEITO DE DIGITAÇÃO (MÁQUINA DE ESCREVER)
+// =========================================
+const elementoOla = document.getElementById("texto-ola");
+const elementoNome = document.getElementById("texto-nome");
+const elementoCargo = document.getElementById("texto-cargo");
+
+// 1. Salva os textos originais
+const textoOla = elementoOla.textContent;
+const textoNome = elementoNome.textContent;
+const textoCargo = elementoCargo.textContent;
+
+// 2. Limpa o HTML para a animação começar com a tela vazia
+elementoOla.innerHTML = "";
+elementoNome.innerHTML = "";
+elementoCargo.innerHTML = "";
+
+// 3. Função que faz a digitação letra por letra
+function digitarTexto(elemento, texto, velocidade, callback) {
+  let i = 0;
+  // Coloca o cursor piscando no elemento atual
+  elemento.classList.add("cursor-ativo");
+
+  const intervalo = setInterval(() => {
+    if (i < texto.length) {
+      elemento.innerHTML += texto.charAt(i);
+      i++;
+    } else {
+      clearInterval(intervalo);
+      // Remove o cursor quando terminar de digitar a palavra
+      elemento.classList.remove("cursor-ativo");
+      // Chama a próxima ação, se houver
+      if (callback) callback();
+    }
+  }, velocidade);
+}
+
+// 4. Inicia a sequência de digitação quando a página carregar
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    // Mudei de 60 para 120
+    digitarTexto(elementoOla, textoOla, 120, () => {
+      // Mudei de 70 para 150 (o nome com um destaque mais lento)
+      digitarTexto(elementoNome, textoNome, 150, () => {
+        // Mudei de 60 para 100
+        digitarTexto(elementoCargo, textoCargo, 100, () => {
+          elementoCargo.classList.add("cursor-ativo");
+        });
+      });
+    });
+  }, 500);
+});
