@@ -64,7 +64,7 @@ body {
 }
 
 /* =========================================
-   3. MENU LATERAL (SIDEBAR)
+   3. MENU FULL-SCREEN (SOBREPOSIÇÃO DESFOCADA)
 ========================================= */
 #icone-menu {
   font-size: 32px;
@@ -81,45 +81,53 @@ body {
   transform: scale(1.1);
 }
 
+/* O novo menu em tela cheia */
 .menu-lateral {
   position: fixed;
   top: 0;
-  left: -280px;
-  width: 260px;
+  left: 0;
+  width: 100%;
   height: 100vh;
-  background-color: #0f1016;
-  border-right: 1px solid #e52e2e;
-  box-shadow: 5px 0 30px rgba(0, 0, 0, 0.7);
+  /* Fundo preto semi-transparente */
+  background-color: rgba(15, 16, 22, 0.85);
+  /* O truque mágico do desfoque (Blur) */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 1000;
-  transition: left 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  padding: 30px 20px;
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+
+  /* Animação de fade (escondido por padrão) */
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
 }
 
+/* Quando o JavaScript adiciona a classe ativo, ele aparece suavemente */
 .menu-lateral.ativo {
-  left: 0;
+  opacity: 1;
+  visibility: visible;
 }
 
+/* Cabecalho do menu (onde fica o botão de fechar) */
 .menu-cabecalho {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  border-bottom: 2px solid #e52e2e;
-  padding-bottom: 8px;
+  position: absolute;
+  top: 40px;
+  right: 60px; /* Joga o botão de fechar pro canto superior direito */
+  border-bottom: none;
 }
 
+/* Escondemos o título "Menu" antigo para ficar igual ao seu exemplo limpo */
 .menu-cabecalho h2 {
-  font-size: 20px;
-  color: #ffffff;
-  margin-bottom: 0;
-  border-bottom: none;
-  padding-bottom: 0;
+  display: none;
 }
 
 #btn-fechar {
-  font-size: 28px;
+  font-size: 50px; /* Um 'X' bem maior */
   color: #a8a8b3;
   cursor: pointer;
   transition:
@@ -130,30 +138,45 @@ body {
 
 #btn-fechar:hover {
   color: #e52e2e;
-  transform: scale(1.1);
+  transform: scale(1.2);
+}
+
+.menu-conteudo {
+  text-align: center;
+}
+
+.mensagem-bem-vindo {
+  color: #e52e2e; /* Usando o vermelho padrão do seu portfólio */
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 40px; /* Dá o espaçamento entre a frase e os links */
 }
 
 .menu-conteudo ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  gap: 35px; /* Espaço maior entre as palavras */
 }
 
 .menu-conteudo ul li a {
-  color: #a8a8b3;
+  color: #ffffff;
   text-decoration: none;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 32px; /* Letras maiores, como no exemplo */
+  font-weight: bold;
   transition:
     color 0.2s ease,
-    padding-left 0.2s ease;
+    transform 0.2s ease;
   display: block;
 }
 
+/* Quando passar o mouse nas palavras do menu */
 .menu-conteudo ul li a:hover {
   color: #e52e2e;
-  padding-left: 8px;
+  transform: scale(
+    1.1
+  ); /* Dá um leve zoom na palavra em vez de empurrar pro lado */
 }
 
 /* =========================================
@@ -395,16 +418,13 @@ main {
 
 .habilidade-card i {
   font-size: 60px;
-  /* Mudamos a transição para animar o tamanho em vez da cor */
   transition: transform 0.3s ease;
 }
 
-/* Opcional: Faz o ícone dar uma leve crescida ao passar o mouse para manter a interatividade */
 .habilidade-card:hover i {
   transform: scale(1.1);
 }
 
-/* Cores originais de cada tecnologia nas habilidades */
 .habilidade-card i.devicon-html5-plain {
   color: #e34f26;
 }
@@ -455,7 +475,6 @@ main {
 
 .contato-item,
 a.link-contato {
-  /* Fundo sólido e elevação adicionados para cobrir o grid tech */
   background-color: #14151f !important;
   padding: 20px;
   border-radius: 8px;
@@ -470,7 +489,6 @@ a.link-contato {
   position: relative;
   z-index: 2;
 
-  /* Animação Inicial (Escondido à esquerda) */
   opacity: 0;
   transform: translateX(-150px);
   transition:
@@ -480,11 +498,10 @@ a.link-contato {
     background-color 0.3s ease;
 }
 
-/* Hover no Cartão: Flutua para cima e clareia o fundo */
 .contato-item:hover,
 a.link-contato:hover {
   background-color: #1a1b26 !important;
-  transform: translateY(-10px) translateX(0) !important; /* Efeito de elevação igual às Habilidades */
+  transform: translateY(-10px) translateX(0) !important;
 }
 
 .contato-icone {
@@ -502,7 +519,6 @@ a.link-contato:hover {
     transform 0.3s ease;
 }
 
-/* Hover no Ícone (Círculo): Cresce um pouco e ganha borda vermelha */
 .contato-item:hover .contato-icone,
 a.link-contato:hover .contato-icone {
   border-color: #e52e2e;
@@ -515,7 +531,6 @@ a.link-contato:hover .contato-icone {
   transition: transform 0.3s ease;
 }
 
-/* Hover no Ícone Interno (Desenho): Cresce 30% e dá o efeito de "salto" */
 .contato-item:hover .contato-icone span,
 a.link-contato:hover .contato-icone span {
   transform: scale(1.3);
@@ -552,25 +567,21 @@ a.link-contato:hover h3 {
 .contatos-lista a.link-contato:nth-child(1) {
   transition-delay: 0.1s;
 }
-
 .habilidade-card:nth-child(2),
 .contatos-lista .contato-item:nth-child(2),
 .contatos-lista a.link-contato:nth-child(2) {
   transition-delay: 0.2s;
 }
-
 .habilidade-card:nth-child(3),
 .contatos-lista .contato-item:nth-child(3),
 .contatos-lista a.link-contato:nth-child(3) {
   transition-delay: 0.3s;
 }
-
 .habilidade-card:nth-child(4),
 .contatos-lista .contato-item:nth-child(4),
 .contatos-lista a.link-contato:nth-child(4) {
   transition-delay: 0.4s;
 }
-
 .habilidade-card:nth-child(5) {
   transition-delay: 0.5s;
 }
@@ -583,7 +594,6 @@ body.light-mode {
   color: #121214;
 }
 
-/* CORREÇÃO 1: Fundo do cabeçalho agora fica claro para revelar o botão de tema */
 body.light-mode .cabecalho {
   background-color: #f4f4f5;
   border-bottom: 1px solid #dcdce0;
@@ -598,13 +608,13 @@ body.light-mode #icone-menu {
 body.light-mode #icone-menu:hover {
   color: #e52e2e;
 }
+
+/* CORREÇÃO DO MENU NO MODO CLARO (Sem borda e fundo branco translúcido) */
 body.light-mode .menu-lateral {
-  background-color: #ffffff;
-  border-right: 1px solid #dcdce0;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-right: none;
 }
-body.light-mode .menu-cabecalho h2 {
-  color: #121214;
-}
+
 body.light-mode #btn-fechar {
   color: #52525b;
 }
@@ -612,7 +622,7 @@ body.light-mode #btn-fechar:hover {
   color: #e52e2e;
 }
 body.light-mode .menu-conteudo ul li a {
-  color: #52525b;
+  color: #121214;
 }
 body.light-mode .menu-conteudo ul li a:hover {
   color: #e52e2e;
@@ -622,13 +632,12 @@ body.light-mode .subtitulo {
   color: #52525b;
 }
 
-/* CORREÇÃO 2: Botão Secundário (Instagram) mais visível e elegante */
 body.light-mode .btn-secundario {
   color: #121214;
-  border-color: #121214; /* Borda escura para dar um contraste bonito */
+  border-color: #121214;
 }
 body.light-mode .btn-secundario:hover {
-  background-color: #121214; /* Preenche de escuro ao passar o mouse */
+  background-color: #121214;
   border-color: #121214;
   color: #ffffff;
 }
@@ -640,7 +649,6 @@ body.light-mode .sobre-mim p {
   color: #52525b;
 }
 
-/* CORREÇÃO 3: Adicionado o título de Habilidades para ficar escuro no modo claro junto com os contatos */
 body.light-mode .habilidades h2,
 body.light-mode .contatos h2,
 body.light-mode .contato-item h3 {
@@ -655,7 +663,6 @@ body.light-mode .contato-icone {
   border: 2px solid #dcdce0;
 }
 
-/* Garante que os cards fiquem brancos no Light Mode para cobrir o grid */
 body.light-mode .habilidade-card,
 body.light-mode .contato-item,
 body.light-mode a.link-contato {
@@ -669,18 +676,21 @@ body.light-mode a.link-contato:hover {
   background-color: #f9f9fa !important;
 }
 
+body.light-mode .mensagem-bem-vindo {
+  color: #121214;
+}
+
 /* =========================================
-   FUNDO TECNOLÓGICO (CORRIGIDO PARA NÃO QUEBRAR A ANIMAÇÃO)
+   FUNDO TECNOLÓGICO
 ========================================= */
 body::before {
   content: "";
-  position: fixed; /* Trava o fundo perfeitamente */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
 
-  /* Seu grid tecnológico */
   background-image:
     radial-gradient(
       circle at 50% 20%,
@@ -695,12 +705,58 @@ body::before {
     50px 50px;
   background-position: center center;
 
-  /* Joga essa camada lá para trás e permite clicar através dela */
   z-index: -1;
   pointer-events: none;
 }
 
-/* Garante que o grid suma no Light Mode para não sujar a tela clara */
 body.light-mode::before {
   display: none;
+}
+
+/* =========================================
+   9. EFEITO DE DIGITAÇÃO (CURSOR)
+========================================= */
+.cursor-ativo::after {
+  content: "|";
+  margin-left: 4px;
+  color: #e52e2e;
+  animation: piscaCursor 0.7s infinite;
+}
+
+@keyframes piscaCursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   10. ALINHAMENTO DOS ÍCONES NOS BOTÕES
+========================================= */
+.botoes a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Espaço entre o ícone e o texto */
+}
+
+.botoes a i {
+  font-size: 20px !important; /* Tamanho proporcional do logo */
+}
+
+/* =========================================
+   11. CORES E ESTILO DOS ÍCONES DOS BOTÕES
+========================================= */
+
+/* Deixa o ícone do LinkedIn inteiro branco para destacar no botão vermelho */
+.btn-primario i.fa-linkedin {
+  color: #ffffff !important;
+}
+
+/* Mantém o verde oficial no ícone do WhatsApp */
+.btn-secundario i.fa-whatsapp {
+  color: #25d366 !important;
 }
