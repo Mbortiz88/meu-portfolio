@@ -798,28 +798,52 @@ body.light-mode::before {
     height: 250px;
   }
 
-  /* Ajusta o grid de habilidades para quebrar linha se necessário */
+  /* -----------------------------------------
+     CORREÇÃO: HABILIDADES NO MOBILE
+  ----------------------------------------- */
   .habilidades-grid {
     flex-wrap: wrap !important;
-    gap: 15px;
+    justify-content: center !important;
+    gap: 15px !important;
   }
 
   .habilidade-card {
-    width: 120px;
-    height: 120px;
+    width: 130px !important;
+    height: 130px !important;
+    /* Muda a animação inicial para vir de baixo (evita quebrar o alinhamento) */
+    transform: translateY(50px) !important;
   }
 
-  /* Ajusta os contatos para caberem melhor */
+  /* -----------------------------------------
+     CORREÇÃO: CONTATOS NO MOBILE
+  ----------------------------------------- */
   .contatos-lista {
-    gap: 10px;
+    flex-direction: column !important; /* Empilha os cartões um embaixo do outro */
+    align-items: center !important;
+    gap: 20px !important;
   }
 
   .contato-item,
   a.link-contato {
-    width: 150px;
+    width: 90% !important; /* Deixa o cartão largo para caber o e-mail */
+    max-width: 320px !important;
+    transform: translateY(50px) !important; /* Animação de baixo para cima */
   }
 
-  /* Ajusta o menu full-screen para ficar perfeito no celular */
+  .contato-item p,
+  a.link-contato p {
+    word-break: break-word; /* Quebra o texto se for muito longo, garantindo que não vaze */
+    font-size: 15px;
+  }
+
+  /* Ajusta a classe de exibição (Animação final) para o mobile */
+  .mostrar {
+    transform: translateY(0) !important;
+  }
+
+  /* -----------------------------------------
+     AJUSTES DO MENU
+  ----------------------------------------- */
   .menu-cabecalho {
     right: 20px;
   }
