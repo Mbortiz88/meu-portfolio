@@ -818,27 +818,33 @@ body.light-mode::before {
      CORREÇÃO: CONTATOS NO MOBILE
   ----------------------------------------- */
   .contatos-lista {
-    flex-direction: column !important; /* Empilha os cartões um embaixo do outro */
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important; /* Força a ficar em uma única coluna perfeita */
     align-items: center !important;
-    gap: 20px !important;
+    gap: 30px !important; /* Aumenta o espaço entre os cartões */
+    height: auto !important;
   }
 
   .contato-item,
   a.link-contato {
-    width: 90% !important; /* Deixa o cartão largo para caber o e-mail */
+    width: 90% !important;
     max-width: 320px !important;
-    transform: translateY(50px) !important; /* Animação de baixo para cima */
+    height: auto !important; /* Garante que a caixa cresça se o texto for longo */
+    margin-bottom: 20px !important; /* Espaçamento forçado de segurança */
+    transform: none !important; /* Desliga a animação de movimento no mobile para não encavalar */
   }
 
   .contato-item p,
   a.link-contato p {
-    word-break: break-word; /* Quebra o texto se for muito longo, garantindo que não vaze */
+    word-break: break-word;
     font-size: 15px;
   }
 
-  /* Ajusta a classe de exibição (Animação final) para o mobile */
+  /* Ajusta a classe de exibição para o mobile */
   .mostrar {
-    transform: translateY(0) !important;
+    opacity: 1 !important;
+    transform: none !important; /* Garante que apareça parado, no lugar certo */
   }
 
   /* -----------------------------------------
