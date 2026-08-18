@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfólio | Matheus Ortiz</title>
+    <title>MBOrtiz Informática | Suporte Técnico</title>
     <link
       rel="icon"
       href="img/MBOsimbolo_preto_fundo_branco.png"
@@ -17,38 +17,29 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
-    />
-
-    <!-- ADICIONADO: Biblioteca do FontAwesome para os logotipos oficiais -->
-    <link
-      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- Seu CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- =========================================
-       1. CABEÇALHO E NAVEGAÇÃO
-    ========================================= -->
+    <!-- Fundo Tecnológico de Partículas -->
+    <div id="tsparticles"></div>
+
+    <!-- CABEÇALHO -->
     <header class="cabecalho">
-      <!-- Ícone do Menu Hambúrguer na Esquerda -->
       <span class="material-symbols-outlined" id="icone-menu" title="Abrir menu"
         >menu</span
       >
-      <h1 class="logo">Portfólio</h1>
+      <h1 class="logo">MBOrtiz <span>Informática</span></h1>
 
-      <!-- Botão de Alternar Tema -->
       <div class="toggle-tema" id="btn-tema" title="Alternar tema">
         <span class="material-symbols-outlined" id="icone-tema">toggle_on</span>
       </div>
     </header>
 
-    <!-- =========================================
-       2. MENU LATERAL (SIDEBAR)
-    ========================================= -->
+    <!-- MENU LATERAL -->
     <nav class="menu-lateral" id="menu-lateral">
       <div class="menu-cabecalho">
         <h2>Navegação</h2>
@@ -60,126 +51,127 @@
         >
       </div>
       <div class="menu-conteudo">
-        <h3 class="mensagem-bem-vindo">Bem-vindo ao meu Portfólio :)</h3>
+        <h3 class="mensagem-bem-vindo">Bem-vindo à MBOrtiz Informática</h3>
         <ul>
           <li><a href="#inicio">Início</a></li>
           <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#servicos">Serviços</a></li>
           <li><a href="#contatos">Contatos</a></li>
         </ul>
       </div>
     </nav>
 
-    <!-- =========================================
-       3. SEÇÃO PRINCIPAL (APRESENTAÇÃO + SOBRE MIM)
-    ========================================= -->
+    <!-- SEÇÃO PRINCIPAL (HERO) -->
     <main>
-      <!-- Seção Apresentação / Hero -->
       <section class="apresentacao" id="inicio">
         <div class="apresentacao-conteudo">
           <h1>
-            <span id="texto-ola">Olá, eu sou o</span> <br />
-            <strong class="destaque-roxo" id="texto-nome">Matheus Ortiz</strong>
+            <span id="texto-ola">Olá, sou Matheus Ortiz da</span> <br />
+            <strong class="destaque-roxo" id="texto-nome"
+              >MBOrtiz Informática</strong
+            >
           </h1>
-          <p class="subtitulo" id="texto-cargo">Desenvolvedor Front-end</p>
+          <p class="subtitulo" id="texto-cargo">
+            Manutenção de Computadores e Suporte
+          </p>
 
           <div class="tech-icons">
-            <i class="devicon-html5-plain"></i>
-            <i class="devicon-css3-plain"></i>
-            <i class="devicon-javascript-plain"></i>
-            <i class="devicon-react-original" title="React"></i>
-            <i class="devicon-typescript-plain" title="TypeScript"></i>
+            <i class="fa-solid fa-computer" title="Desktop"></i>
+            <i class="fa-solid fa-laptop-medical" title="Notebooks"></i>
+            <i class="fa-brands fa-windows" title="Sistemas"></i>
+            <i class="fa-solid fa-microchip" title="Hardware"></i>
           </div>
 
           <div class="botoes">
             <a
               class="btn-primario"
-              href="https://www.linkedin.com/in/matheus-ortiz-72886083/"
-              target="_blank"
-            >
-              <i class="fa-brands fa-linkedin"></i>
-              LinkedIn
-            </a>
-            <a
-              class="btn-secundario"
               href="https://wa.me/5547933810850"
               target="_blank"
             >
-              <i class="fa-brands fa-whatsapp"></i>
-              WhatsApp
+              <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+            </a>
+            <a class="btn-secundario" href="#servicos">
+              <i class="fa-solid fa-screwdriver-wrench"></i> Ver Serviços
             </a>
           </div>
         </div>
 
         <div class="apresentacao-imagem">
-          <!-- Foto com link para o GitHub -->
           <a
-            href="https://github.com/Mbortiz88"
+            href="https://wa.me/5547933810850"
             target="_blank"
-            title="Acessar meu GitHub"
+            title="Falar no WhatsApp"
           >
-            <img src="img/Foto de perfil.png" alt="Foto do Matheus Ortiz" />
+            <img
+              src="img/Foto de perfil.png"
+              alt="Matheus Ortiz - Manutenção"
+            />
           </a>
         </div>
       </section>
 
-      <!-- Seção Sobre Mim -->
+      <!-- SEÇÃO SOBRE -->
       <section class="sobre-mim" id="sobre">
-        <h2>Sobre mim</h2>
+        <h2>Quem Sou</h2>
         <p>
-          Sou um estudante de tecnologia apaixonado por criar experiências
-          digitais e resolver problemas através do código. Atuo focado em
-          <span class="destaque-texto">Desenvolvimento Front-end</span>,
-          construindo interfaces modernas, interativas e responsivas utilizando
+          Olá! Sou o Matheus Ortiz. Sou estudante de tecnologia e criei este
+          projeto de prestação de serviços técnicos como uma forma de
           <span class="destaque-texto"
-            >HTML, CSS, JavaScript, React e TypeScript</span
-          >.
+            >aliar a prática profissional aos meus estudos</span
+          >, ajudando a custear minha formação. Atuo focado na resolução rápida
+          e honesta de problemas, garantindo que seu equipamento entregue o
+          máximo de desempenho. Trabalho com
+          <span class="destaque-texto"
+            >montagem, formatação, limpeza preventiva e upgrades</span
+          >
+          para PCs e notebooks.
         </p>
       </section>
     </main>
 
-    <!-- =========================================
-       4. SEÇÃO HABILIDADES
-    ========================================= -->
-    <section class="habilidades" id="habilidades">
-      <h2>Habilidades</h2>
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <section class="habilidades" id="servicos">
+      <h2>Meus Serviços</h2>
 
       <div class="habilidades-grid">
         <div class="habilidade-card">
-          <span>HTML5</span>
-          <i class="devicon-html5-plain"></i>
+          <span>Formatação</span>
+          <i class="fa-brands fa-windows"></i>
         </div>
 
         <div class="habilidade-card">
-          <span>CSS3</span>
-          <i class="devicon-css3-plain"></i>
+          <span>Limpeza Física</span>
+          <i class="fa-solid fa-fan"></i>
         </div>
 
         <div class="habilidade-card">
-          <span>JavaScript</span>
-          <i class="devicon-javascript-plain"></i>
+          <span>Pasta Térmica</span>
+          <i class="fa-solid fa-temperature-arrow-down"></i>
         </div>
 
         <div class="habilidade-card">
-          <span>React.js</span>
-          <i class="devicon-react-original"></i>
+          <span>Upgrades (SSD/RAM)</span>
+          <i class="fa-solid fa-memory"></i>
         </div>
 
         <div class="habilidade-card">
-          <span>TypeScript</span>
-          <i class="devicon-typescript-plain"></i>
+          <span>Montagem de PC</span>
+          <i class="fa-solid fa-desktop"></i>
+        </div>
+
+        <!-- NOVO CARD ADICIONADO -->
+        <div class="habilidade-card">
+          <span>Diagnóstico Completo</span>
+          <i class="fa-solid fa-stethoscope"></i>
         </div>
       </div>
     </section>
 
-    <!-- =========================================
-       5. SEÇÃO CONTATOS
-    ========================================= -->
+    <!-- SEÇÃO CONTATOS -->
     <section class="contatos" id="contatos">
       <h2>Contatos</h2>
 
       <div class="contatos-lista">
-        <!-- E-mail -->
         <div class="contato-item">
           <div class="contato-icone">
             <span class="material-symbols-outlined">mail</span>
@@ -188,7 +180,6 @@
           <p>matheus.ortiz@gmail.com</p>
         </div>
 
-        <!-- Telefone -->
         <a
           href="https://wa.me/5547933810850"
           target="_blank"
@@ -197,45 +188,30 @@
           <div class="contato-icone">
             <span class="material-symbols-outlined">call</span>
           </div>
-          <h3>Telefone</h3>
+          <h3>WhatsApp</h3>
           <p>(47) 93381-0850</p>
         </a>
 
-        <!-- LinkedIn -->
         <a
           href="https://www.linkedin.com/in/matheus-ortiz-72886083/"
           target="_blank"
           class="contato-item link-contato"
         >
           <div class="contato-icone">
-            <span class="material-symbols-outlined">work</span>
+            <span class="material-symbols-outlined">person</span>
           </div>
           <h3>LinkedIn</h3>
           <p>Matheus Ortiz</p>
         </a>
-
-        <!-- Github -->
-        <a
-          href="https://github.com/Mbortiz88"
-          target="_blank"
-          class="contato-item link-contato"
-        >
-          <div class="contato-icone">
-            <span class="material-symbols-outlined">code</span>
-          </div>
-          <h3>Github</h3>
-          <p>@Mbortiz88</p>
-        </a>
       </div>
     </section>
-    <!-- =========================================
-       RODAPÉ (FOOTER)
-    ========================================= -->
+
     <footer class="rodape">
-      <p>&copy; 2026 Matheus Ortiz. Todos os direitos reservados.</p>
+      <p>&copy; 2026 MBOrtiz Informática. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Seu JavaScript -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
