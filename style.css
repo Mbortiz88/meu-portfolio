@@ -1,12 +1,10 @@
 /* =========================================
    1. CONFIGURAÇÕES GERAIS E RESET
 ========================================= */
-/* Torna a rolagem suave ao clicar nos links do menu */
 html {
   scroll-behavior: smooth;
 }
 
-/* Adiciona uma folga no topo para o título não ficar escondido atrás do cabeçalho fixo */
 section {
   scroll-margin-top: 100px;
 }
@@ -25,7 +23,12 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  position: relative; /* Adicionamos isso para o fundo fantasma funcionar */
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* =========================================
@@ -35,13 +38,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
+  padding: 0 50px;
   border-bottom: 1px solid #e52e2e;
   height: 80px;
   position: sticky;
   top: 0;
   background-color: #0f1016;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .logo {
@@ -53,9 +56,14 @@ body {
   color: #ffffff;
 }
 
+.logo span {
+  color: #e52e2e;
+}
+
 .toggle-tema {
   cursor: pointer;
   margin-left: auto;
+  z-index: 1001;
 }
 
 .toggle-tema span {
@@ -64,12 +72,13 @@ body {
 }
 
 /* =========================================
-   3. MENU FULL-SCREEN (SOBREPOSIÇÃO DESFOCADA)
+   3. MENU FULL-SCREEN
 ========================================= */
 #icone-menu {
   font-size: 32px;
   color: #ffffff;
   cursor: pointer;
+  z-index: 1001;
   transition:
     color 0.2s ease,
     transform 0.2s ease;
@@ -81,25 +90,20 @@ body {
   transform: scale(1.1);
 }
 
-/* O novo menu em tela cheia */
 .menu-lateral {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  /* Fundo preto semi-transparente */
   background-color: rgba(15, 16, 22, 0.85);
-  /* O truque mágico do desfoque (Blur) */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  z-index: 1000;
+  z-index: 2000;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centraliza verticalmente */
-  align-items: center; /* Centraliza horizontalmente */
-
-  /* Animação de fade (escondido por padrão) */
+  justify-content: center;
+  align-items: center;
   opacity: 0;
   visibility: hidden;
   transition:
@@ -107,27 +111,24 @@ body {
     visibility 0.4s ease;
 }
 
-/* Quando o JavaScript adiciona a classe ativo, ele aparece suavemente */
 .menu-lateral.ativo {
   opacity: 1;
   visibility: visible;
 }
 
-/* Cabecalho do menu (onde fica o botão de fechar) */
 .menu-cabecalho {
   position: absolute;
   top: 40px;
-  right: 60px; /* Joga o botão de fechar pro canto superior direito */
+  right: 60px;
   border-bottom: none;
 }
 
-/* Escondemos o título "Menu" antigo para ficar igual ao seu exemplo limpo */
 .menu-cabecalho h2 {
   display: none;
 }
 
 #btn-fechar {
-  font-size: 50px; /* Um 'X' bem maior */
+  font-size: 50px;
   color: #a8a8b3;
   cursor: pointer;
   transition:
@@ -146,10 +147,10 @@ body {
 }
 
 .mensagem-bem-vindo {
-  color: #e52e2e; /* Usando o vermelho padrão do seu portfólio */
+  color: #e52e2e;
   font-size: 28px;
   font-weight: bold;
-  margin-bottom: 40px; /* Dá o espaçamento entre a frase e os links */
+  margin-bottom: 40px;
 }
 
 .menu-conteudo ul {
@@ -157,13 +158,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 35px; /* Espaço maior entre as palavras */
+  gap: 35px;
 }
 
 .menu-conteudo ul li a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 32px; /* Letras maiores, como no exemplo */
+  font-size: 32px;
   font-weight: bold;
   transition:
     color 0.2s ease,
@@ -171,25 +172,19 @@ body {
   display: block;
 }
 
-/* Quando passar o mouse nas palavras do menu */
 .menu-conteudo ul li a:hover {
   color: #e52e2e;
-  transform: scale(
-    1.1
-  ); /* Dá um leve zoom na palavra em vez de empurrar pro lado */
+  transform: scale(1.1);
 }
 
 /* =========================================
    4. TELA INICIAL (HERO / APRESENTAÇÃO)
 ========================================= */
 main {
-  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 60px 80px;
-  width: 100%;
 }
 
 .apresentacao {
@@ -198,24 +193,31 @@ main {
   justify-content: space-between;
   gap: 40px;
   width: 100%;
-  max-width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: calc(100vh - 80px);
+  min-height: 600px;
   padding: 0 40px;
-  margin-bottom: 60px;
+  position: relative;
+  z-index: 10;
 }
 
 .apresentacao-conteudo {
-  max-width: 550px;
+  max-width: 680px;
   text-align: left;
+  position: relative;
+  z-index: 100;
 }
 
 .apresentacao-conteudo h1 {
-  font-size: 48px;
-  line-height: 1.2;
+  font-size: 44px;
+  line-height: 1.25;
   margin-bottom: 15px;
 }
 
 .destaque-roxo {
   color: #e52e2e;
+  display: inline-block;
 }
 
 .subtitulo {
@@ -224,7 +226,7 @@ main {
   margin-bottom: 20px;
 }
 
-/* Ícones das Tecnologias na Apresentação */
+/* Ícones das Tecnologias */
 .tech-icons {
   display: flex;
   gap: 20px;
@@ -233,20 +235,34 @@ main {
   justify-content: flex-start;
 }
 
-.tech-icons i.devicon-html5-plain {
-  color: #e34f26;
+.tech-icons i {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
-.tech-icons i.devicon-css3-plain {
-  color: #1572b6;
+
+.tech-icons i.fa-computer {
+  color: #8b5cf6;
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
 }
-.tech-icons i.devicon-javascript-plain {
-  color: #f7df1e;
+.tech-icons i.fa-laptop-medical {
+  color: #10b981;
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
 }
-.tech-icons i.devicon-react-original {
-  color: #61dafb;
+.tech-icons i.fa-windows {
+  color: #00a4ef;
+  filter: drop-shadow(0 0 8px rgba(0, 164, 239, 0.4));
 }
-.tech-icons i.devicon-typescript-plain {
-  color: #3178c6;
+.tech-icons i.fa-microchip {
+  color: #f59e0b;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.4));
+}
+
+.tech-icons i:hover {
+  color: #e52e2e;
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 15px rgba(229, 46, 46, 0.8));
 }
 
 /* Botões da Apresentação */
@@ -254,19 +270,35 @@ main {
   display: flex;
   gap: 20px;
   justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  z-index: 100;
 }
 
 .btn-primario,
 .btn-secundario {
-  padding: 12px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 30px;
+  height: 50px;
   border-radius: 6px;
   font-size: 16px;
   font-weight: bold;
   text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  z-index: 101;
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease,
     transform 0.3s ease;
+}
+
+.botoes a i {
+  font-size: 20px !important;
 }
 
 .btn-primario {
@@ -289,14 +321,26 @@ main {
 
 .btn-secundario:hover {
   border-color: #e52e2e;
+  background-color: rgba(229, 46, 46, 0.05);
   transform: scale(1.05);
 }
 
-/* Imagem de Perfil */
+/* Imagem de Perfil Clicável */
 .apresentacao-imagem {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 100;
+}
+
+.apresentacao-imagem a {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  z-index: 101;
+  transition: transform 0.3s ease;
+  pointer-events: auto !important;
 }
 
 .apresentacao-imagem img {
@@ -306,15 +350,15 @@ main {
   border-radius: 50%;
   border: 8px solid #e52e2e;
   box-shadow: 0 0 50px rgba(229, 46, 46, 0.3);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
-.apresentacao-imagem img:hover {
-  transform: scale(1.05);
+.apresentacao-imagem a:hover img {
   box-shadow: 0 0 80px rgba(229, 46, 46, 0.6);
-  cursor: pointer;
+}
+
+.apresentacao-imagem a:hover {
+  transform: scale(1.05);
 }
 
 /* =========================================
@@ -324,11 +368,13 @@ main {
   max-width: 900px;
   width: 100%;
   text-align: center;
-  margin-top: 100px; /* <--- Aumentamos de 20px para 100px para empurrar para baixo */
-  margin-bottom: 40px;
+  margin: 100px auto;
+  padding: 60px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 10;
 }
 
 .sobre-mim h2 {
@@ -351,13 +397,13 @@ main {
 }
 
 /* =========================================
-   6. SEÇÃO HABILIDADES (C/ ANIMAÇÃO DA ESQUERDA)
+   6. SEÇÃO SERVIÇOS
 ========================================= */
 .habilidades {
   max-width: 1000px;
   width: 100%;
   text-align: center;
-  margin: 200px auto 100px auto;
+  margin: 100px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -372,9 +418,8 @@ main {
 }
 
 .habilidades-grid {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 30px;
@@ -383,7 +428,7 @@ main {
 }
 
 .habilidade-card {
-  background-color: #14151f !important;
+  background-color: #14151f;
   border-bottom: 3px solid #e52e2e;
   border-radius: 8px;
   width: 160px;
@@ -399,14 +444,13 @@ main {
     background-color 0.3s ease;
   position: relative;
   z-index: 2;
-
   opacity: 0;
-  transform: translateX(-150px);
+  transform: translateY(40px);
 }
 
 .habilidade-card:hover {
-  transform: translateY(-10px) translateX(0) !important;
-  background-color: #1a1b26 !important;
+  transform: translateY(-10px) !important;
+  background-color: #1a1b26;
 }
 
 .habilidade-card span {
@@ -417,7 +461,7 @@ main {
 }
 
 .habilidade-card i {
-  font-size: 60px;
+  font-size: 50px;
   transition: transform 0.3s ease;
 }
 
@@ -425,37 +469,54 @@ main {
   transform: scale(1.1);
 }
 
-.habilidade-card i.devicon-html5-plain {
-  color: #e34f26;
+.habilidade-card i.fa-windows {
+  color: #0078d7;
 }
-
-.habilidade-card i.devicon-css3-plain {
-  color: #1572b6;
+.habilidade-card i.fa-fan {
+  color: #9ca3af;
 }
-
-.habilidade-card i.devicon-javascript-plain {
-  color: #f7df1e;
+.habilidade-card i.fa-temperature-arrow-down {
+  color: #3b82f6;
 }
-
-.habilidade-card i.devicon-react-original {
-  color: #61dafb;
+.habilidade-card i.fa-memory {
+  color: #10b981;
 }
-
-.habilidade-card i.devicon-typescript-plain {
-  color: #3178c6;
+.habilidade-card i.fa-desktop {
+  color: #8b5cf6;
+}
+/* Cores dos Ícones de Serviço na Grade */
+.habilidade-card i.fa-windows {
+  color: #0078d7;
+}
+.habilidade-card i.fa-fan {
+  color: #9ca3af;
+}
+.habilidade-card i.fa-temperature-arrow-down {
+  color: #3b82f6;
+}
+.habilidade-card i.fa-memory {
+  color: #10b981;
+}
+.habilidade-card i.fa-desktop {
+  color: #8b5cf6;
+}
+.habilidade-card i.fa-stethoscope {
+  color: #06b6d4;
 }
 
 /* =========================================
-   7. SEÇÃO CONTATOS (C/ FUNDO SÓLIDO E ANIMAÇÃO)
+   7. SEÇÃO CONTATOS 
 ========================================= */
 .contatos {
   max-width: 1000px;
   width: 100%;
   text-align: center;
-  margin: 200px auto 60px auto;
+  margin: 100px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 10;
 }
 
 .contatos h2 {
@@ -475,7 +536,7 @@ main {
 
 .contato-item,
 a.link-contato {
-  background-color: #14151f !important;
+  background-color: #14151f;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
@@ -484,24 +545,23 @@ a.link-contato {
   align-items: center;
   text-align: center;
   width: 180px;
-  text-decoration: none;
   cursor: pointer;
   position: relative;
-  z-index: 2;
-
+  z-index: 10;
   opacity: 0;
-  transform: translateX(-150px);
+  transform: translateY(40px);
   transition:
     transform 0.6s ease-out,
     opacity 0.6s ease-out,
     border-color 0.3s ease,
     background-color 0.3s ease;
+  pointer-events: auto !important;
 }
 
 .contato-item:hover,
 a.link-contato:hover {
-  background-color: #1a1b26 !important;
-  transform: translateY(-10px) translateX(0) !important;
+  background-color: #1a1b26;
+  transform: translateY(-10px) !important;
 }
 
 .contato-icone {
@@ -539,7 +599,7 @@ a.link-contato:hover .contato-icone span {
 .contato-item h3,
 a.link-contato h3 {
   font-size: 18px;
-  color: #ffffff;
+  color: #ffffff !important;
   margin-bottom: 5px;
   transition: color 0.3s ease;
 }
@@ -547,21 +607,19 @@ a.link-contato h3 {
 .contato-item p,
 a.link-contato p {
   font-size: 14px;
-  color: #a8a8b3;
+  color: #a8a8b3 !important;
   transition: color 0.3s ease;
 }
 
 a.link-contato:hover h3 {
-  color: #e52e2e;
+  color: #e52e2e !important;
 }
 
-/* --- CLASSE ATIVADORA DA ANIMAÇÃO (JS) --- */
 .mostrar {
   opacity: 1 !important;
-  transform: translateX(0) !important;
+  transform: translateY(0) !important;
 }
 
-/* Cascata das Habilidades e Contatos */
 .habilidade-card:nth-child(1),
 .contatos-lista .contato-item:nth-child(1),
 .contatos-lista a.link-contato:nth-child(1) {
@@ -587,13 +645,12 @@ a.link-contato:hover h3 {
 }
 
 /* =========================================
-   8. TEMA CLARO (LIGHT MODE COMPLETO)
+   8. TEMA CLARO (LIGHT MODE)
 ========================================= */
 body.light-mode {
   background-color: #f4f4f5;
   color: #121214;
 }
-
 body.light-mode .cabecalho {
   background-color: #f4f4f5;
   border-bottom: 1px solid #dcdce0;
@@ -601,20 +658,16 @@ body.light-mode .cabecalho {
 body.light-mode .logo {
   color: #121214;
 }
-
 body.light-mode #icone-menu {
   color: #121214;
 }
 body.light-mode #icone-menu:hover {
   color: #e52e2e;
 }
-
-/* CORREÇÃO DO MENU NO MODO CLARO (Sem borda e fundo branco translúcido) */
 body.light-mode .menu-lateral {
   background-color: rgba(255, 255, 255, 0.85);
   border-right: none;
 }
-
 body.light-mode #btn-fechar {
   color: #52525b;
 }
@@ -627,11 +680,9 @@ body.light-mode .menu-conteudo ul li a {
 body.light-mode .menu-conteudo ul li a:hover {
   color: #e52e2e;
 }
-
 body.light-mode .subtitulo {
   color: #52525b;
 }
-
 body.light-mode .btn-secundario {
   color: #121214;
   border-color: #121214;
@@ -641,76 +692,39 @@ body.light-mode .btn-secundario:hover {
   border-color: #121214;
   color: #ffffff;
 }
-
 body.light-mode .sobre-mim h2 {
   color: #121214;
 }
 body.light-mode .sobre-mim p {
   color: #52525b;
 }
-
 body.light-mode .habilidades h2,
 body.light-mode .contatos h2,
-body.light-mode .contato-item h3 {
-  color: #121214;
+body.light-mode .contato-item h3,
+body.light-mode a.link-contato h3 {
+  color: #121214 !important;
 }
-
-body.light-mode .contato-item p {
-  color: #52525b;
+body.light-mode .contato-item p,
+body.light-mode a.link-contato p {
+  color: #52525b !important;
 }
 body.light-mode .contato-icone {
   background-color: #ffffff;
   border: 2px solid #dcdce0;
 }
-
 body.light-mode .habilidade-card,
 body.light-mode .contato-item,
 body.light-mode a.link-contato {
-  background-color: #ffffff !important;
+  background-color: #ffffff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
-
 body.light-mode .habilidade-card:hover,
 body.light-mode .contato-item:hover,
 body.light-mode a.link-contato:hover {
-  background-color: #f9f9fa !important;
+  background-color: #f9f9fa;
 }
-
 body.light-mode .mensagem-bem-vindo {
   color: #121214;
-}
-
-/* =========================================
-   FUNDO TECNOLÓGICO
-========================================= */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-
-  background-image:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(229, 46, 46, 0.15) 0%,
-      transparent 60%
-    ),
-    linear-gradient(rgba(229, 46, 46, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(229, 46, 46, 0.12) 1px, transparent 1px);
-  background-size:
-    100% 100%,
-    50px 50px,
-    50px 50px;
-  background-position: center center;
-
-  z-index: -1;
-  pointer-events: none;
-}
-
-body.light-mode::before {
-  display: none;
 }
 
 /* =========================================
@@ -722,7 +736,6 @@ body.light-mode::before {
   color: #e52e2e;
   animation: piscaCursor 0.7s infinite;
 }
-
 @keyframes piscaCursor {
   0%,
   100% {
@@ -734,130 +747,62 @@ body.light-mode::before {
 }
 
 /* =========================================
-   10. ALINHAMENTO DOS ÍCONES NOS BOTÕES
-========================================= */
-.botoes a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px; /* Espaço entre o ícone e o texto */
-}
-
-.botoes a i {
-  font-size: 20px !important; /* Tamanho proporcional do logo */
-}
-
-/* =========================================
-   11. CORES E ESTILO DOS ÍCONES DOS BOTÕES
-========================================= */
-
-/* Deixa o ícone do LinkedIn inteiro branco para destacar no botão vermelho */
-.btn-primario i.fa-linkedin {
-  color: #ffffff !important;
-}
-
-/* Mantém o verde oficial no ícone do WhatsApp */
-.btn-secundario i.fa-whatsapp {
-  color: #25d366 !important;
-}
-
-/* =========================================
-   12. RESPONSIVIDADE (MOBILE - TELAS ATÉ 768px)
+   10. RESPONSIVIDADE (MOBILE)
 ========================================= */
 @media (max-width: 768px) {
-  /* Ajusta o padding do cabeçalho */
   .cabecalho {
-    padding: 20px 20px;
+    padding: 0 20px;
   }
-
-  /* Ajusta a seção Hero (apresentação) para empilhar os elementos */
   .apresentacao {
-    flex-direction: column-reverse; /* Foto sobe, texto desce */
+    flex-direction: column-reverse;
     text-align: center;
     padding: 20px 20px;
+    height: auto;
     margin-bottom: 40px;
   }
-
   .apresentacao-conteudo {
     text-align: center;
     margin-top: 30px;
     max-width: 100%;
   }
-
   .apresentacao-conteudo h1 {
     font-size: 32px;
   }
-
   .tech-icons,
   .botoes {
     justify-content: center;
   }
-
   .apresentacao-imagem img {
     width: 250px;
     height: 250px;
   }
 
-  /* -----------------------------------------
-     CORREÇÃO: HABILIDADES NO MOBILE
-  ----------------------------------------- */
   .habilidades-grid {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 15px !important;
+    gap: 15px;
   }
-
   .habilidade-card {
-    width: 130px !important;
-    height: 130px !important;
-    /* Muda a animação inicial para vir de baixo (evita quebrar o alinhamento) */
-    transform: translateY(50px) !important;
+    width: 130px;
+    height: 130px;
   }
 
-  /* -----------------------------------------
-     CORREÇÃO: CONTATOS NO MOBILE
-  ----------------------------------------- */
   .contatos-lista {
-    display: flex !important;
-    flex-direction: column !important;
-    flex-wrap: nowrap !important; /* Força a ficar em uma única coluna perfeita */
-    align-items: center !important;
-    gap: 30px !important; /* Aumenta o espaço entre os cartões */
-    height: auto !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
   }
-
   .contato-item,
   a.link-contato {
-    width: 90% !important;
-    max-width: 320px !important;
-    height: auto !important; /* Garante que a caixa cresça se o texto for longo */
-    margin-bottom: 20px !important; /* Espaçamento forçado de segurança */
-    transform: none !important; /* Desliga a animação de movimento no mobile para não encavalar */
+    width: 90%;
+    max-width: 320px;
+    margin-bottom: 20px;
   }
 
-  .contato-item p,
-  a.link-contato p {
-    word-break: break-word;
-    font-size: 15px;
-  }
-
-  /* Ajusta a classe de exibição para o mobile */
-  .mostrar {
-    opacity: 1 !important;
-    transform: none !important; /* Garante que apareça parado, no lugar certo */
-  }
-
-  /* -----------------------------------------
-     AJUSTES DO MENU
-  ----------------------------------------- */
   .menu-cabecalho {
     right: 20px;
   }
-
   .menu-conteudo ul li a {
     font-size: 24px;
   }
-
   .mensagem-bem-vindo {
     font-size: 20px;
     padding: 0 20px;
@@ -870,16 +815,66 @@ body.light-mode::before {
 .rodape {
   text-align: center;
   padding: 25px 20px;
-  margin-top: 60px; /* Dá um respiro depois dos contatos */
+  margin-top: 60px;
   color: #a8a8b3;
   font-size: 14px;
-  border-top: 1px solid rgba(229, 46, 46, 0.2); /* Linha sutil em vermelho escuro */
+  border-top: 1px solid rgba(229, 46, 46, 0.2);
   background-color: transparent;
   width: 100%;
+  position: relative;
+  z-index: 10;
 }
-
-/* Ajuste para o Modo Claro */
 body.light-mode .rodape {
   color: #52525b;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   FUNDO TECNOLÓGICO DINÂMICO (tsParticles)
+========================================= */
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none !important;
+}
+
+/* Força absoluta para liberar cliques em todos os botões e links */
+a,
+button,
+.btn-primario,
+.btn-secundario,
+.apresentacao-imagem a,
+.link-contato {
+  pointer-events: auto !important;
+}
+
+.habilidade-card:nth-child(1),
+.contatos-lista .contato-item:nth-child(1),
+.contatos-lista a.link-contato:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.habilidade-card:nth-child(2),
+.contatos-lista .contato-item:nth-child(2),
+.contatos-lista a.link-contato:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.habilidade-card:nth-child(3),
+.contatos-lista .contato-item:nth-child(3),
+.contatos-lista a.link-contato:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.habilidade-card:nth-child(4),
+.contatos-lista .contato-item:nth-child(4),
+.contatos-lista a.link-contato:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.habilidade-card:nth-child(5) {
+  transition-delay: 0.5s;
+}
+.habilidade-card:nth-child(6) {
+  transition-delay: 0.6s;
 }
