@@ -151,26 +151,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =========================================
-// 4. CONFIGURAÇÃO DO FUNDO DE PARTÍCULAS (REDE NEURAL)
+// 4. CONFIGURAÇÃO DO FUNDO DE PARTÍCULAS
 // =========================================
 window.addEventListener("DOMContentLoaded", () => {
   if (typeof tsParticles !== "undefined") {
     tsParticles.load("tsparticles", {
       particles: {
-        number: {
-          value: 60,
-          density: { enable: true, value_area: 800 },
-        },
-        color: { value: "#e52e2e" }, // Vermelho MBOrtiz
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#e52e2e" },
         shape: { type: "circle" },
-        opacity: {
-          value: 0.5,
-          random: false,
-        },
-        size: {
-          value: 3, // Partículas menores e mais discretas (antes estavam grandes)
-          random: true,
-        },
+        opacity: { value: 0.5, random: false },
+        size: { value: 3, random: true },
         links: {
           enable: true,
           color: "#e52e2e",
@@ -189,15 +180,16 @@ window.addEventListener("DOMContentLoaded", () => {
         },
       },
       interactivity: {
-        detect_on: "canvas",
+        // MUDANÇA AQUI: Detecta o mouse em qualquer lugar da tela
+        detect_on: "window",
         events: {
           onhover: {
             enable: true,
-            mode: "grab", // Faz as linhas se conectarem ao cursor do mouse
+            mode: "grab",
           },
           onclick: {
             enable: true,
-            mode: "push", // Cria mais partículas ao clicar
+            mode: "push",
           },
           resize: true,
         },
