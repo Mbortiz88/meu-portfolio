@@ -1,217 +1,1761 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MBOrtiz Informática | Suporte Técnico</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Matheus Ortiz Fitness // CyberGym</title>
+
     <link
-      rel="icon"
-      href="img/MBOsimbolo_preto_fundo_branco.png"
-      type="image/png"
+      href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Montserrat:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.cdnfonts.com/css/digital-7-mono"
+      rel="stylesheet"
     />
 
-    <!-- Google Fonts & Icons -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <style>
+      :root {
+        --primary: #ff1836;
+        --primary-glow: rgba(255, 24, 54, 0.5);
+        --success: #00ff66;
+        --success-glow: rgba(0, 255, 102, 0.4);
+        --accent: #ff6a00;
+        --bg-dark: #050508;
+        --card-bg: linear-gradient(
+          145deg,
+          rgba(22, 22, 30, 0.95),
+          rgba(10, 10, 15, 0.98)
+        );
+        --border: rgba(255, 255, 255, 0.08);
+        --text: #ffffff;
+        --muted: #8b8d9b;
+      }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Montserrat", sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--bg-dark);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      body {
+        background-image:
+          radial-gradient(
+            circle at 50% 0%,
+            rgba(255, 24, 54, 0.15) 0%,
+            transparent 60%
+          ),
+          linear-gradient(rgba(5, 5, 8, 0.92), rgba(5, 5, 8, 0.98)),
+          url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop");
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        padding: env(safe-area-inset-top, 20px) 12px 90px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .scanline {
+        position: fixed;
+        top: -10%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary),
+          transparent
+        );
+        box-shadow: 0 0 15px 2px var(--primary-glow);
+        opacity: 0.35;
+        animation: scan 7s linear infinite;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      @keyframes scan {
+        0% {
+          top: -10%;
+        }
+        100% {
+          top: 110%;
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        100%,
+        38%,
+        42%,
+        70%,
+        72% {
+          opacity: 1;
+          text-shadow: 0 0 8px var(--primary-glow);
+        }
+        36%,
+        40% {
+          opacity: 0.4;
+          text-shadow: none;
+        }
+        71% {
+          opacity: 0.6;
+        }
+      }
+
+      header {
+        width: 100%;
+        max-width: 500px;
+        text-align: center;
+        margin-bottom: 22px;
+        padding-top: 10px;
+        z-index: 20;
+        position: relative;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .dumbbell-icon {
+        width: 30px;
+        height: 30px;
+        color: var(--primary);
+        filter: drop-shadow(0 0 10px var(--primary-glow));
+      }
+
+      h1 {
+        font-family: "Teko", sans-serif;
+        font-size: 28px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        line-height: 1;
+        animation: blink 5s infinite;
+      }
+      h1 span {
+        color: var(--primary);
+      }
+
+      .subtitle {
+        font-size: 9px;
+        letter-spacing: 3px;
+        color: var(--muted);
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      .app-screen {
+        width: 100%;
+        max-width: 500px;
+        z-index: 20;
+        display: none;
+        flex-direction: column;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .app-screen.active {
+        display: flex !important;
+        opacity: 1 !important;
+      }
+
+      .main-nav-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(7, 7, 11, 0.98);
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0 calc(10px + env(safe-area-inset-bottom, 0px));
+        z-index: 9000;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.9);
+      }
+
+      .nav-tab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        color: var(--muted);
+        flex: 1;
+        transition: 0.25s;
+        cursor: pointer;
+      }
+
+      .nav-tab.active {
+        color: var(--accent);
+        filter: drop-shadow(0 0 8px rgba(255, 106, 0, 0.5));
+      }
+
+      .nav-tab svg {
+        width: 22px;
+        height: 22px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        transition: 0.25s;
+      }
+
+      .nav-tab.active svg {
+        stroke: var(--accent);
+        transform: scale(1.15);
+      }
+
+      .nav-label {
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 1px;
+      }
+
+      .menu-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        padding-bottom: 30px;
+      }
+
+      .menu-item {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.25s;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      }
+
+      .menu-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 4px;
+        background: linear-gradient(180deg, var(--primary), #8a0014);
+        box-shadow: 2px 0 12px var(--primary-glow);
+      }
+
+      .menu-item:hover {
+        transform: scale(1.02) translateY(-2px);
+        border-color: rgba(255, 24, 54, 0.4);
+        box-shadow: 0 12px 30px rgba(255, 24, 54, 0.15);
+      }
+
+      .menu-info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        z-index: 2;
+      }
+
+      .menu-day-name {
+        font-family: "Teko", sans-serif;
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .menu-tags {
+        display: flex;
+        gap: 6px;
+      }
+
+      .menu-region-badge {
+        font-size: 8px;
+        font-weight: 800;
+        background: rgba(255, 24, 54, 0.15);
+        color: #ff4d63;
+        padding: 4px 8px;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 24, 54, 0.3);
+      }
+
+      .menu-ex-count {
+        font-size: 8px;
+        font-weight: 800;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+
+      .menu-action {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .menu-item:hover .menu-action {
+        background: rgba(255, 24, 54, 0.2);
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: translateX(3px);
+      }
+
+      .workout-nav-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 10px;
+      }
+
+      .btn-back {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 800;
+        cursor: pointer;
+        display: flex;
+        gap: 5px;
+      }
+
+      .workout-title {
+        font-family: "Teko", sans-serif;
+        font-size: 24px;
+        color: var(--primary);
+        text-shadow: 0 0 12px var(--primary-glow);
+        line-height: 1;
+      }
+
+      .workout-container {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding-bottom: 130px;
+      }
+
+      .cardio-card,
+      .exercise-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cardio-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background: var(--primary);
+        box-shadow: 0 0 12px var(--primary);
+      }
+
+      .cardio-header,
+      .exercise-name {
+        font-family: "Teko", sans-serif;
+        font-size: 20px;
+        color: #fff;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 8px;
+      }
+
+      .cardio-header {
+        color: #ff6b7d;
+      }
+
+      .cardio-inputs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .cardio-input-group {
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        padding: 6px;
+      }
+
+      .cardio-input-group label {
+        font-size: 8px;
+        color: var(--muted);
+        font-weight: 800;
+        display: block;
+        margin-bottom: 2px;
+        text-transform: uppercase;
+      }
+
+      .cardio-input-group input {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+        width: 100%;
+        outline: none;
+      }
+
+      .btn-history {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #ddd;
+        border-radius: 6px;
+        padding: 4px 8px;
+        font-size: 9px;
+        font-weight: 800;
+        margin-left: auto;
+        cursor: pointer;
+      }
+
+      .sets-header,
+      .set-row {
+        display: grid;
+        grid-template-columns: 26px 1fr 1fr 34px;
+        gap: 6px;
+        text-align: center;
+      }
+
+      .sets-header {
+        font-size: 9px;
+        color: var(--muted);
+        font-weight: 800;
+        padding: 0 4px 6px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sets-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .set-row {
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        padding: 5px 4px;
+        border-radius: 8px;
+        transition: 0.3s;
+        align-items: center;
+      }
+
+      @keyframes glow-pulse {
+        0% {
+          box-shadow: 0 0 15px var(--success-glow);
+          border-color: var(--success);
+        }
+        100% {
+          box-shadow: 0 0 5px rgba(0, 255, 102, 0.2);
+          border-color: rgba(0, 255, 102, 0.4);
+        }
+      }
+
+      .set-row.completed {
+        background: rgba(0, 255, 102, 0.08);
+        animation: glow-pulse 0.5s forwards;
+      }
+
+      .set-label {
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 800;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        padding: 6px 0;
+      }
+
+      .set-row.completed .set-label {
+        background: rgba(0, 255, 102, 0.15);
+        color: var(--success);
+      }
+
+      .control-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .btn-adjust {
+        background: transparent;
+        border: none;
+        color: var(--muted);
+        width: 24px;
+        height: 28px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      input.val-input {
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 800;
+        color: #fff;
+        background: transparent;
+        border: none;
+        outline: none;
+        -moz-appearance: textfield;
+      }
+
+      .check-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(0, 0, 0, 0.6);
+        color: transparent;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: 0 auto;
+        font-size: 14px;
+      }
+
+      .check-btn.checked {
+        background: var(--success);
+        border-color: var(--success);
+        color: #000;
+        font-weight: 900;
+        box-shadow: 0 0 12px var(--success-glow);
+        transform: scale(1.05);
+      }
+
+      #timerWrapper {
+        margin: 8px 0;
+      }
+
+      .hardware-timer {
+        background: #07070b;
+        border: 1px solid rgba(255, 24, 54, 0.3);
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow:
+          inset 0 0 15px #000,
+          0 6px 20px rgba(0, 0, 0, 0.8);
+      }
+
+      .hardware-screen {
+        background: #040001;
+        border-radius: 6px;
+        padding: 8px 0;
+        border: 1px solid #1c0305;
+        box-shadow: inset 0 0 18px #000;
+        text-align: center;
+        position: relative;
+      }
+
+      .hardware-screen::before {
+        content: "88:88:88";
+        position: absolute;
+        font-family: "Digital-7 Mono", sans-serif;
+        font-size: 44px;
+        color: #150002;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .timer-display {
+        font-family: "Digital-7 Mono", sans-serif;
+        font-size: 44px;
+        color: var(--primary);
+        text-shadow:
+          0 0 10px var(--primary),
+          0 0 20px var(--primary-glow);
+        position: relative;
+        z-index: 2;
+        line-height: 1;
+      }
+
+      .timer-controls-inline {
+        display: flex;
+        gap: 6px;
+        margin-top: 8px;
+      }
+
+      .timer-btn-inline {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        color: #ddd;
+        font-family: "Teko", sans-serif;
+        font-size: 16px;
+        padding: 6px 0;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .timer-btn-inline:hover {
+        background: rgba(255, 24, 54, 0.2);
+        border-color: var(--primary);
+        color: #fff;
+      }
+
+      .bottom-actions-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(5, 5, 8, 0.98);
+        border-top: 1px solid var(--border);
+        padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        z-index: 100;
+        box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.9);
+      }
+
+      .secondary-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .action-btn {
+        flex: 1;
+        padding: 10px;
+        border-radius: 6px;
+        font-family: "Teko", sans-serif;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        text-transform: uppercase;
+      }
+
+      .btn-copy {
+        background: rgba(255, 24, 54, 0.15);
+        color: var(--primary);
+        border: 1px solid rgba(255, 24, 54, 0.3);
+      }
+
+      .btn-reset {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--muted);
+        border: 1px solid var(--border);
+      }
+
+      .btn-save {
+        background: linear-gradient(135deg, var(--primary), #700010);
+        color: #fff;
+        font-size: 20px;
+        padding: 12px;
+        box-shadow: 0 4px 20px rgba(255, 24, 54, 0.5);
+        border: 1px solid #ff5c73;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100000;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.3s;
+      }
+
+      .modal-overlay.active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .modal-content {
+        background: #12121c;
+        border: 1px solid rgba(255, 24, 54, 0.3);
+        border-radius: 12px;
+        width: 90%;
+        max-width: 340px;
+        padding: 18px;
+        box-shadow: 0 20px 50px #000;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 8px;
+        margin-bottom: 12px;
+      }
+
+      .modal-title {
+        font-family: "Teko", sans-serif;
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      .close-btn {
+        background: transparent;
+        border: none;
+        color: var(--muted);
+        font-size: 24px;
+        cursor: pointer;
+        line-height: 1;
+      }
+
+      .input-history-box {
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+
+      .input-history-box label {
+        font-size: 9px;
+        color: var(--muted);
+        font-weight: 800;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .input-row-flex {
+        display: flex;
+        gap: 6px;
+      }
+
+      .input-row-flex input {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+        padding: 8px;
+        text-align: center;
+        outline: none;
+      }
+
+      .btn-add-weight {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0 12px;
+        font-weight: 800;
+        font-size: 11px;
+        cursor: pointer;
+      }
+
+      .history-list-title {
+        font-size: 9px;
+        color: var(--muted);
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+
+      .history-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .history-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .history-item span:first-child {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      #toast {
+        position: fixed;
+        top: 30px;
+        background: rgba(0, 255, 102, 0.95);
+        color: #000;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 900;
+        font-size: 12px;
+        box-shadow: 0 8px 25px var(--success-glow);
+        transform: translateY(-200px);
+        transition: 0.3s;
+        z-index: 100000;
+        text-align: center;
+      }
+
+      #toast.show {
+        transform: translateY(0);
+      }
+    </style>
   </head>
   <body>
-    <!-- Fundo Tecnológico de Partículas -->
-    <div id="tsparticles"></div>
+    <div class="scanline"></div>
 
-    <!-- CABEÇALHO -->
-    <header class="cabecalho">
-      <span class="material-symbols-outlined" id="icone-menu" title="Abrir menu"
-        >menu</span
-      >
-      <h1 class="logo">MBOrtiz <span>Informática</span></h1>
-
-      <div class="toggle-tema" id="btn-tema" title="Alternar tema">
-        <span class="material-symbols-outlined" id="icone-tema">toggle_on</span>
+    <header id="mainHeader">
+      <div class="logo-container">
+        <svg class="dumbbell-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M20.5 8.5V15.5C20.5 16.3 19.8 17 19 17H18V19C18 19.6 17.6 20 17 20H15C14.4 20 14 19.6 14 19V15H10V19C10 19.6 9.6 20 9 20H7C6.4 20 6 19.6 6 19V17H5C4.2 17 3.5 16.3 3.5 15.5V8.5C3.5 7.7 4.2 7 5 7H6V5C6 4.4 6.4 4 7 4H9C9.6 4 10 4.4 10 5V9H14V5C14 4.4 14.4 4 15 4H17C17.6 4 18 4.4 18 5V7H19C19.8 7 20.5 7.7 20.5 8.5Z"
+          />
+        </svg>
+        <h1>Matheus Ortiz <span>Fitness</span></h1>
       </div>
+      <div class="subtitle">Cyberpunk HUD // High Performance</div>
     </header>
 
-    <!-- MENU LATERAL -->
-    <nav class="menu-lateral" id="menu-lateral">
-      <div class="menu-cabecalho">
-        <h2>Navegação</h2>
-        <span
-          class="material-symbols-outlined"
-          id="btn-fechar"
-          title="Fechar menu"
-          >close</span
-        >
-      </div>
-      <div class="menu-conteudo">
-        <h3 class="mensagem-bem-vindo">Bem-vindo à MBOrtiz Informática</h3>
-        <ul>
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#contatos">Contatos</a></li>
-        </ul>
-      </div>
-    </nav>
+    <div id="homeScreen" class="app-screen active">
+      <div class="menu-list" id="menuList"></div>
+    </div>
 
-    <!-- SEÇÃO PRINCIPAL (HERO) -->
-    <main>
-      <section class="apresentacao" id="inicio">
-        <div class="apresentacao-conteudo">
-          <h1>
-            <span id="texto-ola">Olá, sou Matheus Ortiz da</span> <br />
-            <strong class="destaque-roxo" id="texto-nome"
-              >MBOrtiz Informática</strong
-            >
-          </h1>
-          <p class="subtitulo" id="texto-cargo">
-            Manutenção de Computadores e Suporte
-          </p>
+    <div id="workoutScreen" class="app-screen">
+      <div class="workout-nav-bar">
+        <button class="btn-back" onclick="goHome()">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          VOLTAR
+        </button>
+        <div class="workout-title" id="workoutTitleDisplay"></div>
+      </div>
 
-          <div class="tech-icons">
-            <i class="fa-solid fa-computer" title="Desktop"></i>
-            <i class="fa-solid fa-laptop-medical" title="Notebooks"></i>
-            <i class="fa-brands fa-windows" title="Sistemas"></i>
-            <i class="fa-solid fa-microchip" title="Hardware"></i>
+      <div class="workout-container" id="workoutView"></div>
+
+      <div id="timerWrapper" style="display: none">
+        <div class="hardware-timer">
+          <div class="hardware-screen">
+            <span class="timer-display" id="timerDisplay">00:00:00</span>
           </div>
-
-          <div class="botoes">
-            <a
-              class="btn-primario"
-              href="https://wa.me/5547933810850"
-              target="_blank"
+          <div class="timer-controls-inline">
+            <button class="timer-btn-inline" onclick="startTimer(60)">
+              60s
+            </button>
+            <button class="timer-btn-inline" onclick="startTimer(90)">
+              90s
+            </button>
+            <button class="timer-btn-inline" onclick="startTimer(120)">
+              120s
+            </button>
+            <button
+              class="timer-btn-inline"
+              onclick="stopTimer()"
+              style="color: #ff6b7d"
             >
-              <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
-            </a>
-            <a class="btn-secundario" href="#servicos">
-              <i class="fa-solid fa-screwdriver-wrench"></i> Ver Serviços
-            </a>
+              PARAR
+            </button>
           </div>
         </div>
+      </div>
 
-        <div class="apresentacao-imagem">
-          <a
-            href="https://wa.me/5547933810850"
-            target="_blank"
-            title="Falar no WhatsApp"
-          >
-            <img
-              src="img/Foto de perfil.png"
-              alt="Matheus Ortiz - Manutenção"
+      <div
+        class="bottom-actions-container"
+        id="bottomActions"
+        style="display: none"
+      >
+        <div class="secondary-actions">
+          <button class="action-btn btn-reset" onclick="resetWorkout()">
+            Zerar Dados
+          </button>
+          <button class="action-btn btn-copy" onclick="copyWorkoutReport()">
+            Copiar
+          </button>
+        </div>
+        <button class="action-btn btn-save" onclick="saveWorkoutHistory()">
+          ✓ FINALIZAR TREINO
+        </button>
+      </div>
+    </div>
+
+    <div class="main-nav-container" id="mainNavContainer">
+      <div
+        class="nav-tab active"
+        id="tabTreinos"
+        onclick="switchMainTab('homeScreen')"
+      >
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M6.5 6.5v11m11-11v11m-13-9h14m-14 7h14m-3-11v14m-8-14v14"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="nav-label">TREINOS</span>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="historyModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title" id="historyTitle">Nome</div>
+          <button class="close-btn" onclick="closeHistory()">×</button>
+        </div>
+        <div class="input-history-box">
+          <label>Nova Carga Máxima (KG)</label>
+          <div class="input-row-flex">
+            <input
+              type="number"
+              id="manualKgInput"
+              placeholder="Ex: 60"
+              step="0.5"
             />
-          </a>
+            <button class="btn-add-weight" onclick="addManualWeight()">
+              SALVAR
+            </button>
+          </div>
         </div>
-      </section>
-
-      <!-- SEÇÃO SOBRE -->
-      <section class="sobre-mim" id="sobre">
-        <h2>Quem Sou</h2>
-        <p>
-          Olá! Sou o Matheus Ortiz. Sou estudante de tecnologia e criei este
-          projeto de prestação de serviços técnicos como uma forma de
-          <span class="destaque-texto"
-            >aliar a prática profissional aos meus estudos</span
-          >, ajudando a custear minha formação. Atuo focado na resolução rápida
-          e honesta de problemas, garantindo que seu equipamento entregue o
-          máximo de desempenho. Trabalho com
-          <span class="destaque-texto"
-            >montagem, formatação, limpeza preventiva e upgrades</span
-          >
-          para PCs e notebooks.
-        </p>
-      </section>
-    </main>
-
-    <!-- SEÇÃO DE SERVIÇOS -->
-    <section class="habilidades" id="servicos">
-      <h2>Meus Serviços</h2>
-
-      <div class="habilidades-grid">
-        <div class="habilidade-card">
-          <span>Formatação</span>
-          <i class="fa-brands fa-windows"></i>
-        </div>
-
-        <div class="habilidade-card">
-          <span>Limpeza Física</span>
-          <i class="fa-solid fa-fan"></i>
-        </div>
-
-        <div class="habilidade-card">
-          <span>Pasta Térmica</span>
-          <i class="fa-solid fa-temperature-arrow-down"></i>
-        </div>
-
-        <div class="habilidade-card">
-          <span>Upgrades (SSD/RAM)</span>
-          <i class="fa-solid fa-memory"></i>
-        </div>
-
-        <div class="habilidade-card">
-          <span>Montagem de PC</span>
-          <i class="fa-solid fa-desktop"></i>
-        </div>
-
-        <!-- NOVO CARD ADICIONADO -->
-        <div class="habilidade-card">
-          <span>Diagnóstico Completo</span>
-          <i class="fa-solid fa-stethoscope"></i>
-        </div>
+        <div class="history-list-title">Evolução de Cargas</div>
+        <div class="history-list" id="historyList"></div>
       </div>
-    </section>
+    </div>
 
-    <!-- SEÇÃO CONTATOS -->
-    <section class="contatos" id="contatos">
-      <h2>Contatos</h2>
+    <div id="toast">MENSAGEM AQUI</div>
 
-      <div class="contatos-lista">
-        <div class="contato-item">
-          <div class="contato-icone">
-            <span class="material-symbols-outlined">mail</span>
-          </div>
-          <h3>E-mail</h3>
-          <p>matheus.ortiz@gmail.com</p>
-        </div>
+    <script>
+      const workoutData = {
+        DOM: {
+          dayName: "Domingo",
+          region: "PUSH + ABS",
+          cardio: { time: "20min", dist: "2,5km", kcal: "160" },
+          exercises: [
+            {
+              name: "Supino Reto Barra",
+              sets: [
+                { kg: 60, reps: 10 },
+                { kg: 65, reps: 8 },
+                { kg: 65, reps: 8 },
+              ],
+            },
+            {
+              name: "Supino Inclinado Halter",
+              sets: [
+                { kg: 55, reps: 10 },
+                { kg: 60, reps: 8 },
+                { kg: 60, reps: 8 },
+              ],
+            },
+            {
+              name: "Desenv. Máquina",
+              sets: [
+                { kg: 50, reps: 10 },
+                { kg: 60, reps: 8 },
+              ],
+            },
+            {
+              name: "Elevação Lateral",
+              sets: [
+                { kg: 15, reps: 10 },
+                { kg: 10, reps: 10 },
+                { kg: 10, reps: 8 },
+                { kg: 10, reps: 8 },
+              ],
+            },
+            {
+              name: "Tríceps Corda",
+              sets: [
+                { kg: 60, reps: 10 },
+                { kg: 65, reps: 8 },
+                { kg: 70, reps: 8 },
+              ],
+            },
+            {
+              name: "Tríceps Testa Polia",
+              sets: [
+                { kg: 40, reps: 10 },
+                { kg: 45, reps: 8 },
+              ],
+            },
+            {
+              name: "Abd. Infra Aparelho",
+              sets: [
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+              ],
+            },
+            {
+              name: "Abd. Roda (Ab Wheel)",
+              sets: [
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+              ],
+            },
+          ],
+        },
+        SEG: {
+          dayName: "Segunda-feira",
+          region: "PULL + BICEPS",
+          cardio: { time: "10min", dist: "1,0km", kcal: "80" },
+          exercises: [
+            {
+              name: "Puxada Alta",
+              sets: [
+                { kg: 40, reps: 10 },
+                { kg: 45, reps: 8 },
+                { kg: 50, reps: 8 },
+              ],
+            },
+            {
+              name: "Remada Baixa",
+              sets: [
+                { kg: 60, reps: 10 },
+                { kg: 65, reps: 8 },
+                { kg: 70, reps: 8 },
+              ],
+            },
+            {
+              name: "Facepull (Polia)",
+              sets: [
+                { kg: 30, reps: 15 },
+                { kg: 35, reps: 12 },
+                { kg: 35, reps: 12 },
+              ],
+            },
+            {
+              name: "Rosca Direta (W)",
+              sets: [
+                { kg: 30, reps: 10 },
+                { kg: 35, reps: 10 },
+                { kg: 35, reps: 8 },
+              ],
+            },
+            {
+              name: "Rosca Alternada",
+              sets: [
+                { kg: 14, reps: 10 },
+                { kg: 16, reps: 8 },
+                { kg: 16, reps: 8 },
+              ],
+            },
+            {
+              name: "Rosca Scott Maq.",
+              sets: [
+                { kg: 40, reps: 10 },
+                { kg: 45, reps: 8 },
+                { kg: 50, reps: 8 },
+              ],
+            },
+            {
+              name: "Rosca Martelo",
+              sets: [
+                { kg: 14, reps: 10 },
+                { kg: 14, reps: 10 },
+                { kg: 14, reps: 10 },
+              ],
+            },
+          ],
+        },
+        TER: {
+          dayName: "Terça-feira",
+          region: "PUSH 2 + ABS",
+          cardio: { time: "15min", dist: "1,2km", kcal: "100" },
+          exercises: [
+            {
+              name: "Supino Reto Halter",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Peck Deck (Voador)",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Desenv. Halteres",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Elevação Lateral",
+              sets: [
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+              ],
+            },
+            {
+              name: "Tríceps Francês",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Tríceps Pulley Reto",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Abdominal na Polia",
+              sets: [
+                { kg: 35, reps: 15 },
+                { kg: 35, reps: 15 },
+                { kg: 35, reps: 15 },
+              ],
+            },
+            {
+              name: "Abd. Oblíquo Cruzado",
+              sets: [
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+              ],
+            },
+          ],
+        },
+        QUA: {
+          dayName: "Quarta-feira",
+          region: "LOWER 1 (PERNAS)",
+          cardio: { time: "15min", dist: "1,5km", kcal: "120" },
+          exercises: [
+            {
+              name: "Hack Squat",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Leg Press 45º",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Cadeira Extensora",
+              sets: [
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+              ],
+            },
+            {
+              name: "Cadeira Abdutora",
+              sets: [
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+              ],
+            },
+            {
+              name: "Cadeira Adutora",
+              sets: [
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+              ],
+            },
+            {
+              name: "Panturrilhas em Pé",
+              sets: [
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+              ],
+            },
+          ],
+        },
+        QUI: {
+          dayName: "Quinta-feira",
+          region: "PULL 2 + ABS",
+          cardio: { time: "15min", dist: "1,2km", kcal: "100" },
+          exercises: [
+            {
+              name: "Puxada Triângulo",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Remada Curvada",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Pulldown Corda",
+              sets: [
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+              ],
+            },
+            {
+              name: "Crucifixo Inverso",
+              sets: [
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+              ],
+            },
+            {
+              name: "Rosca Direta",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Rosca Concentrada",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Abd. Supra c/ Carga",
+              sets: [
+                { kg: 10, reps: 15 },
+                { kg: 10, reps: 15 },
+                { kg: 10, reps: 15 },
+              ],
+            },
+            {
+              name: "Prancha Isométrica",
+              sets: [
+                { kg: 0, reps: 60 },
+                { kg: 0, reps: 60 },
+                { kg: 0, reps: 60 },
+              ],
+            },
+          ],
+        },
+        SEX: {
+          dayName: "Sexta-feira",
+          region: "LOWER 2",
+          cardio: { time: "15min", dist: "1,5km", kcal: "120" },
+          exercises: [
+            {
+              name: "Mesa Flexora",
+              sets: [
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 12 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Stiff",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Elevação Pélvica",
+              sets: [
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+                { kg: 0, reps: 10 },
+              ],
+            },
+            {
+              name: "Panturrilhas Sentado",
+              sets: [
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+              ],
+            },
+            {
+              name: "Panturrilhas em Pé",
+              sets: [
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+                { kg: 0, reps: 15 },
+              ],
+            },
+          ],
+        },
+      };
 
-        <a
-          href="https://wa.me/5547933810850"
-          target="_blank"
-          class="contato-item link-contato"
-        >
-          <div class="contato-icone">
-            <span class="material-symbols-outlined">call</span>
-          </div>
-          <h3>WhatsApp</h3>
-          <p>(47) 93381-0850</p>
-        </a>
+      let currentDay = null;
+      let currentEx = "";
+      let wakeLock = null;
 
-        <a
-          href="https://www.linkedin.com/in/matheus-ortiz-72886083/"
-          target="_blank"
-          class="contato-item link-contato"
-        >
-          <div class="contato-icone">
-            <span class="material-symbols-outlined">person</span>
-          </div>
-          <h3>LinkedIn</h3>
-          <p>Matheus Ortiz</p>
-        </a>
-      </div>
-    </section>
+      async function requestWakeLock() {
+        try {
+          if ("wakeLock" in navigator) {
+            wakeLock = await navigator.wakeLock.request("screen");
+          }
+        } catch (e) {}
+      }
 
-    <footer class="rodape">
-      <p>&copy; 2026 MBOrtiz Informática. Todos os direitos reservados.</p>
-    </footer>
+      function releaseWakeLock() {
+        if (wakeLock) {
+          wakeLock.release().then(() => (wakeLock = null));
+        }
+      }
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-    <script src="script.js"></script>
+      function initApp() {
+        const list = document.getElementById("menuList");
+        list.innerHTML = "";
+
+        Object.keys(workoutData).forEach((k) => {
+          const d = workoutData[k];
+          list.innerHTML += `
+                    <div class="menu-item" onclick="openDay('${k}')">
+                        <div class="menu-info">
+                            <span class="menu-day-name">${d.dayName}</span>
+                            <div class="menu-tags">
+                                <span class="menu-region-badge">${d.region}</span>
+                                <span class="menu-ex-count">${d.exercises.length} EXERCÍCIOS</span>
+                            </div>
+                        </div>
+                        <div class="menu-action">❯</div>
+                    </div>`;
+        });
+      }
+
+      function switchMainTab(id) {
+        document
+          .querySelectorAll(".app-screen")
+          .forEach((s) => s.classList.remove("active"));
+        setTimeout(() => {
+          document
+            .querySelectorAll(".app-screen")
+            .forEach((s) => (s.style.display = "none"));
+          document.getElementById(id).style.display = "flex";
+          setTimeout(
+            () => document.getElementById(id).classList.add("active"),
+            10,
+          );
+        }, 300);
+      }
+
+      function openDay(k) {
+        currentDay = k;
+        document.getElementById("mainHeader").style.display = "none";
+        document.getElementById("mainNavContainer").style.display = "none";
+        document.getElementById("homeScreen").classList.remove("active");
+
+        setTimeout(() => {
+          document.getElementById("homeScreen").style.display = "none";
+          document.getElementById("workoutScreen").style.display = "flex";
+          document.getElementById("bottomActions").style.display = "flex";
+          document.getElementById("workoutTitleDisplay").innerText =
+            workoutData[k].dayName;
+          renderWorkout(k);
+          setTimeout(
+            () =>
+              document.getElementById("workoutScreen").classList.add("active"),
+            10,
+          );
+        }, 300);
+      }
+
+      function goHome() {
+        document.getElementById("workoutScreen").classList.remove("active");
+        document.getElementById("bottomActions").style.display = "none";
+
+        setTimeout(() => {
+          document.getElementById("workoutScreen").style.display = "none";
+          document.getElementById("mainHeader").style.display = "block";
+          document.getElementById("homeScreen").style.display = "flex";
+          document.getElementById("mainNavContainer").style.display = "flex";
+          setTimeout(
+            () => document.getElementById("homeScreen").classList.add("active"),
+            10,
+          );
+          stopTimer();
+        }, 300);
+      }
+
+      function renderWorkout(k) {
+        const cont = document.getElementById("workoutView");
+        const timer = document.getElementById("timerWrapper");
+        cont.innerHTML = "";
+
+        const d = workoutData[k];
+        const t = localStorage.getItem(`g_${k}_c_t`) || d.cardio.time;
+        const di = localStorage.getItem(`g_${k}_c_d`) || d.cardio.dist;
+        const kc = localStorage.getItem(`g_${k}_c_k`) || d.cardio.kcal;
+
+        cont.innerHTML += `
+                <div class="cardio-card">
+                    <div class="cardio-header">🔥 AQUECIMENTO / CARDIO</div>
+                    <div class="cardio-inputs">
+                        <div class="cardio-input-group">
+                            <label>Tempo</label>
+                            <input type="text" id="c_t" value="${t}" oninput="saveC()">
+                        </div>
+                        <div class="cardio-input-group">
+                            <label>Distância</label>
+                            <input type="text" id="c_d" value="${di}" oninput="saveC()">
+                        </div>
+                        <div class="cardio-input-group">
+                            <label>Calorias</label>
+                            <input type="text" id="c_k" value="${kc}" oninput="saveC()">
+                        </div>
+                    </div>
+                </div>`;
+
+        timer.style.display = "block";
+        cont.appendChild(timer);
+
+        d.exercises.forEach((ex, i) => {
+          let sHtml = `
+                    <div class="sets-header">
+                        <div>Série</div>
+                        <div>Carga</div>
+                        <div>Reps</div>
+                        <div>OK</div>
+                    </div>
+                    <div class="sets-list">`;
+
+          ex.sets.forEach((set, j) => {
+            const s = JSON.parse(
+              localStorage.getItem(`g_${k}_e${i}_s${j}`),
+            ) || { kg: set.kg, reps: set.reps, checked: false };
+
+            /* AQUI FOI FEITA A CORREÇÃO: ID MUDOU DE r_${i}_${j} para row_${i}_${j} */
+            sHtml += `
+                        <div class="set-row ${s.checked ? "completed" : ""}" id="row_${i}_${j}">
+                            <div class="set-label">${j + 1}</div>
+                            
+                            <div class="control-group">
+                                <button class="btn-adjust" onclick="uV(${i},${j},'kg',-1)">-</button>
+                                <input type="number" class="val-input" id="k_${i}_${j}" value="${s.kg}" onchange="saveS(${i},${j})" step="1">
+                                <button class="btn-adjust" onclick="uV(${i},${j},'kg',1)">+</button>
+                            </div>
+                            
+                            <div class="control-group">
+                                <button class="btn-adjust" onclick="uV(${i},${j},'rp',-1)">-</button>
+                                <input type="number" class="val-input" id="r_${i}_${j}" value="${s.reps}" onchange="saveS(${i},${j})">
+                                <button class="btn-adjust" onclick="uV(${i},${j},'rp',1)">+</button>
+                            </div>
+                            
+                            <button class="check-btn ${s.checked ? "checked" : ""}" id="c_${i}_${j}" onclick="tC(${i},${j})">✓</button>
+                        </div>`;
+          });
+          sHtml += `</div>`;
+
+          cont.innerHTML += `
+                    <div class="exercise-card">
+                        <div class="exercise-name">
+                            ${ex.name}
+                            <button class="btn-history" onclick="showH('${ex.name}')">📈 HISTÓRICO</button>
+                        </div>
+                        ${sHtml}
+                    </div>`;
+        });
+      }
+
+      function saveC() {
+        localStorage.setItem(
+          `g_${currentDay}_c_t`,
+          document.getElementById("c_t").value,
+        );
+        localStorage.setItem(
+          `g_${currentDay}_c_d`,
+          document.getElementById("c_d").value,
+        );
+        localStorage.setItem(
+          `g_${currentDay}_c_k`,
+          document.getElementById("c_k").value,
+        );
+      }
+
+      function uV(i, j, f, d) {
+        const inpt = document.getElementById(`${f[0]}_${i}_${j}`);
+        let v = parseFloat(inpt.value.replace(",", ".")) || 0;
+        v = Math.max(0, v + d);
+        inpt.value = Number.isInteger(v) ? v : v.toFixed(1);
+        saveS(i, j);
+      }
+
+      function tC(i, j) {
+        const btn = document.getElementById(`c_${i}_${j}`);
+        const row = document.getElementById(`row_${i}_${j}`);
+
+        row.classList.remove("completed");
+        void row.offsetWidth;
+
+        btn.classList.toggle("checked");
+
+        if (btn.classList.contains("checked")) {
+          row.classList.add("completed");
+          showToast("SÉRIE COMPUTADA", 1000);
+        }
+        saveS(i, j);
+      }
+
+      function saveS(i, j) {
+        const kg =
+          parseFloat(
+            document.getElementById(`k_${i}_${j}`).value.replace(",", "."),
+          ) || 0;
+        const reps =
+          parseInt(document.getElementById(`r_${i}_${j}`).value) || 0;
+        const chk = document
+          .getElementById(`c_${i}_${j}`)
+          .classList.contains("checked");
+        localStorage.setItem(
+          `g_${currentDay}_e${i}_s${j}`,
+          JSON.stringify({ kg, reps, checked: chk }),
+        );
+      }
+
+      function resetWorkout() {
+        if (confirm(`Zerar dados de ${workoutData[currentDay].dayName}?`)) {
+          localStorage.removeItem(`g_${currentDay}_c_t`);
+          localStorage.removeItem(`g_${currentDay}_c_d`);
+          localStorage.removeItem(`g_${currentDay}_c_k`);
+
+          workoutData[currentDay].exercises.forEach((ex, i) => {
+            ex.sets.forEach((s, j) => {
+              localStorage.removeItem(`g_${currentDay}_e${i}_s${j}`);
+            });
+          });
+
+          renderWorkout(currentDay);
+          showToast("DADOS ZERADOS!", 1500);
+        }
+      }
+
+      function copyWorkoutReport() {
+        let r = `*HUD CYBERGYM: ${workoutData[currentDay].dayName.toUpperCase()}*\n🔥 *Cardio:* ${document.getElementById("c_t").value} | ${document.getElementById("c_d").value} / ${document.getElementById("c_k").value}\n`;
+
+        workoutData[currentDay].exercises.forEach((ex, i) => {
+          r += `\n* ${ex.name}:`;
+          ex.sets.forEach((s, j) => {
+            r += `\n  - S${j + 1}: ${document.getElementById(`k_${i}_${j}`).value}kg x ${document.getElementById(`r_${i}_${j}`).value} (OK)`;
+          });
+        });
+
+        navigator.clipboard
+          .writeText(r)
+          .then(() => showToast("COPIADO PRO WHATSAPP!", 2000));
+      }
+
+      function saveWorkoutHistory() {
+        const date = new Date().toLocaleDateString("pt-BR");
+        let count = 0;
+
+        workoutData[currentDay].exercises.forEach((ex, i) => {
+          let max = 0,
+            ok = false;
+
+          ex.sets.forEach((s, j) => {
+            const d = JSON.parse(
+              localStorage.getItem(`g_${currentDay}_e${i}_s${j}`),
+            );
+            if (d && d.checked) {
+              ok = true;
+              if (d.kg > max) max = d.kg;
+            }
+          });
+
+          if (ok) {
+            let h = JSON.parse(localStorage.getItem(`gh_${ex.name}`)) || [];
+            let t = h.find((e) => e.date === date);
+
+            if (t) {
+              t.max = Math.max(t.max, max);
+            } else {
+              h.push({ date: date, max: max });
+            }
+
+            localStorage.setItem(`gh_${ex.name}`, JSON.stringify(h));
+            count++;
+          }
+        });
+
+        if (count > 0) {
+          showToast(`SALVO! ${count} REGISTROS ATUALIZADOS 🚀`, 3000);
+        } else {
+          showToast("NADA CONCLUÍDO PARA SALVAR", 3000);
+        }
+      }
+
+      function showH(name) {
+        currentEx = name;
+        document.getElementById("historyTitle").innerText = name;
+        document.getElementById("manualKgInput").value = "";
+
+        const h = JSON.parse(localStorage.getItem(`gh_${name}`)) || [];
+        const list = document.getElementById("historyList");
+        list.innerHTML = "";
+
+        if (!h.length) {
+          list.innerHTML =
+            '<div class="history-item" style="justify-content:center;color:#888;">Sem registros</div>';
+        } else {
+          [...h].reverse().forEach((e) => {
+            list.innerHTML += `<div class="history-item"><span>${e.date}</span><span>${e.max} KG</span></div>`;
+          });
+        }
+
+        document.getElementById("historyModal").classList.add("active");
+      }
+
+      function addManualWeight() {
+        const v = parseFloat(
+          document.getElementById("manualKgInput").value.replace(",", "."),
+        );
+        if (isNaN(v) || v <= 0) {
+          showToast("VALOR INVÁLIDO!", 1500);
+          return;
+        }
+
+        const date = new Date().toLocaleDateString("pt-BR");
+        let h = JSON.parse(localStorage.getItem(`gh_${currentEx}`)) || [];
+        let t = h.find((e) => e.date === date);
+
+        if (t) {
+          t.max = Math.max(t.max, v);
+        } else {
+          h.push({ date: date, max: v });
+        }
+
+        localStorage.setItem(`gh_${currentEx}`, JSON.stringify(h));
+        showToast(`CARGA DE ${v}KG GRAVADA!`, 2000);
+        showH(currentEx);
+      }
+
+      function closeHistory() {
+        document.getElementById("historyModal").classList.remove("active");
+      }
+
+      function showToast(m, d) {
+        const t = document.getElementById("toast");
+        t.innerText = m;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), d);
+      }
+
+      let tmr;
+      let end = 0;
+      const bell = new Audio(
+        "https://gfxsounds.com/wp-content/uploads/2021/07/Boxing-bell-ring-three-times.mp3",
+      );
+
+      function startTimer(s) {
+        bell.load();
+        clearInterval(tmr);
+        requestWakeLock();
+        end = Date.now() + s * 1000;
+
+        tmr = setInterval(() => {
+          let r = end - Date.now();
+          if (r <= 0) {
+            clearInterval(tmr);
+            document.getElementById("timerDisplay").innerText = "00:00:00";
+            end = 0;
+            bell.play().catch(() => {});
+            if (navigator.vibrate) navigator.vibrate([500, 200, 500]);
+            releaseWakeLock();
+          } else {
+            let m = Math.floor(r / 60000)
+              .toString()
+              .padStart(2, "0");
+            let sc = Math.floor((r % 60000) / 1000)
+              .toString()
+              .padStart(2, "0");
+            let ms = Math.floor((r % 1000) / 10)
+              .toString()
+              .padStart(2, "0");
+            document.getElementById("timerDisplay").innerText =
+              `${m}:${sc}:${ms}`;
+          }
+        }, 16);
+      }
+
+      function stopTimer() {
+        clearInterval(tmr);
+        end = 0;
+        document.getElementById("timerDisplay").innerText = "00:00:00";
+        releaseWakeLock();
+      }
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible" && end > 0) {
+          if (Date.now() >= end) {
+            clearInterval(tmr);
+            stopTimer();
+            bell.play().catch(() => {});
+          } else {
+            requestWakeLock();
+          }
+        }
+      });
+
+      window.onload = initApp;
+    </script>
   </body>
 </html>
