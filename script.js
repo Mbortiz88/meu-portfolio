@@ -139,69 +139,15 @@ function digitarTexto(elemento, texto, velocidade, callback) {
 // 4. Inicia a sequência de digitação quando a página carregar
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
-    digitarTexto(elementoOla, textoOla, 100, () => {
-      digitarTexto(elementoNome, textoNome, 120, () => {
-        // Reduzido para 50ms para que o subtítulo grande seja lido rapidamente
-        digitarTexto(elementoCargo, textoCargo, 50, () => {
+    // Mudei de 60 para 120
+    digitarTexto(elementoOla, textoOla, 120, () => {
+      // Mudei de 70 para 150 (o nome com um destaque mais lento)
+      digitarTexto(elementoNome, textoNome, 150, () => {
+        // Mudei de 60 para 100
+        digitarTexto(elementoCargo, textoCargo, 100, () => {
           elementoCargo.classList.add("cursor-ativo");
         });
       });
     });
   }, 500);
-});
-
-// =========================================
-// 4. CONFIGURAÇÃO DO FUNDO DE PARTÍCULAS
-// =========================================
-window.addEventListener("DOMContentLoaded", () => {
-  if (typeof tsParticles !== "undefined") {
-    tsParticles.load("tsparticles", {
-      particles: {
-        number: { value: 60, density: { enable: true, value_area: 800 } },
-        color: { value: "#e52e2e" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5, random: false },
-        size: { value: 3, random: true },
-        links: {
-          enable: true,
-          color: "#e52e2e",
-          distance: 150,
-          opacity: 0.4,
-          width: 1,
-        },
-        move: {
-          enable: true,
-          speed: 1.2,
-          direction: "none",
-          random: false,
-          straight: false,
-          out_mode: "out",
-          bounce: false,
-        },
-      },
-      interactivity: {
-        // MUDANÇA AQUI: Detecta o mouse em qualquer lugar da tela
-        detect_on: "window",
-        events: {
-          onhover: {
-            enable: true,
-            mode: "grab",
-          },
-          onclick: {
-            enable: true,
-            mode: "push",
-          },
-          resize: true,
-        },
-        modes: {
-          grab: {
-            distance: 180,
-            line_linked: { opacity: 0.8 },
-          },
-          push: { particles_nb: 4 },
-        },
-      },
-      retina_detect: true,
-    });
-  }
 });
